@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centar za slabovidne — Monokl</title>
+    <meta name="description" content="Specijalizirani centar za osobe sa smanjenim vidom. Elektronska pomagala, povećala, teleskopski sustavi. Ugovorni dobavljač HZZO-a.">
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #1a56db; --dark: #0f172a; --gray: #64748b; --border: #e2e8f0; }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; background: #e9edf2; }
+        img { max-width: 100%; height: auto; }
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        header img { height: 38px; }
+        .back-link { text-decoration: none; color: var(--gray); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .back-link:hover { color: var(--primary); }
+
+        .blog-hero {
+            margin-top: 62px;
+            padding: 2rem 2rem;
+            height: 360px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+        .blog-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.8));
+        }
+        .blog-hero > *:not(.blog-hero-bg) { position: relative; z-index: 1; }
+        .blog-hero .tag { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; margin-bottom: 1.2rem; letter-spacing: 0.3px; }
+        .blog-hero h1 { font-family: 'Lora', Georgia, serif; font-size: 2.6rem; font-weight: 700; max-width: 700px; margin: 0 auto 0.8rem; line-height: 1.25; }
+        .blog-hero .subtitle { color: #cbd5e1; font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
+
+        .blog-card {
+            max-width: 720px;
+            margin: -2rem auto 0;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .blog-card-inner {
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 3rem 3rem 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        .blog-card-inner h2 { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 0.8rem; color: var(--dark); }
+        .blog-card-inner h2:first-child { margin-top: 0; }
+        .blog-card-inner p { color: #374151; font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.2rem; }
+        .blog-card-inner ul { margin: 1rem 0 1.5rem 1.2rem; color: #374151; }
+        .blog-card-inner ul li { margin-bottom: 0.7rem; font-size: 1rem; line-height: 1.75; padding-left: 0.3rem; }
+        .blog-card-inner ul li strong { color: var(--dark); }
+        .highlight-box { background: #fff; border-left: 4px solid var(--primary); padding: 1.3rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.8rem 0; }
+        .highlight-box p { margin-bottom: 0; color: var(--dark); font-weight: 500; }
+        .divider { width: 40px; height: 3px; background: var(--primary); border-radius: 2px; margin: 2.5rem 0; }
+
+        .blog-cta { max-width: 720px; margin: 1.5rem auto 3rem; padding: 0 1.5rem; }
+        .blog-cta-inner { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); border-radius: 14px; padding: 2.5rem; text-align: center; }
+        .blog-cta-inner h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .blog-cta-inner p { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
+        .btn:hover { background: #1644b0; transform: translateY(-1px); }
+        footer { background: var(--dark); color: #94a3b8; padding: 4rem 2rem 2rem; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1e293b; }
+        .footer-brand img { height: 40px; margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.5rem; }
+        .footer-col ul a { color: #94a3b8; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+        .footer-col ul a:hover { color: #fff; }
+        .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.5rem; display: flex; justify-content: center; font-size: 0.82rem; }
+
+        @media (max-width: 768px) {
+            header { padding: 0.6rem 1rem; } header img { height: 30px; }
+            .blog-hero { padding: 1.5rem 1.2rem; height: 300px; }
+            .blog-hero h1 { font-size: 1.8rem; }
+            .blog-hero .subtitle { font-size: 0.92rem; }
+            .blog-card { padding: 0 1rem; }
+            .blog-card-inner { padding: 2rem 1.5rem 1.5rem; border-radius: 12px; }
+            .blog-card-inner h2 { font-size: 1.25rem; }
+            .blog-card-inner p { font-size: 0.95rem; }
+            .blog-cta { padding: 0 1rem; } .blog-cta-inner { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .footer-brand { grid-column: span 2; }
+            .footer-brand img { height: 32px; }
+            .footer-brand p { font-size: 0.82rem; }
+            .footer-col h4 { font-size: 0.82rem; }
+            .footer-col ul a { font-size: 0.82rem; }
+            .footer-bottom { font-size: 0.75rem; }
+        }
+        @media (max-width: 380px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="img/logo.png" alt="Monokl" height="38"></a>
+    <a href="index.html" class="back-link">&larr; Natrag na početnu</a>
+</header>
+
+<div class="blog-hero">
+    <div class="blog-hero-bg" style="background-image: url('img/hero-3.jpg')"></div>
+    <span class="tag">Centar za slabovidne</span>
+    <h1>Centar za slabovidne</h1>
+    <p class="subtitle">Stručna pomoć za osobe sa smanjenim vidom</p>
+</div>
+
+<div class="blog-card">
+    <div class="blog-card-inner">
+        <p>Centar za slabovidne pomaže osobama kojima korektivne leće više ne mogu pružiti zadovoljavajuću oštrinu vida. Nudimo subspecijalističke preglede, savjetovanje i prilagodbu pomagala — sve na jednom mjestu.</p>
+
+        <div class="divider"></div>
+
+        <h2>Pomagala koja nudimo</h2>
+        <ul>
+            <li><strong>Elektronska pomagala za povećanje</strong> — najmodernije digitalne lupe i čitači</li>
+            <li><strong>Povećala</strong> — ručna, stolna i džepna povećala za svakodnevnu upotrebu</li>
+            <li><strong>Teleskopski sustavi</strong> — za gledanje na veće udaljenosti</li>
+            <li><strong>Medicinske filtar naočale (kantenfilteri)</strong> — specijalizirane leće za zaštitu i poboljšanje kontrasta</li>
+            <li><strong>Naočale s ugrađenim povećanjem</strong> — za čitanje i precizne radove</li>
+        </ul>
+
+        <h2>HZZO pokriće</h2>
+        <div class="highlight-box">
+            <p>Monokl je ugovorni dobavljač HZZO-a. HZZO odobrava sredstva za teleskopske naočale i 4 modela elektronskih pomagala. Za detalje o pokriću i proceduri kontaktirajte nas.</p>
+        </div>
+
+        <h2>Edukativni materijali</h2>
+        <p>Centar pruža informacije o:</p>
+        <ul>
+            <li><strong>Makularnoj degeneraciji povezanoj s dobi</strong> — prehrana i prevencija</li>
+            <li><strong>Retinitis pigmentosa</strong></li>
+            <li><strong>Glaukom</strong></li>
+        </ul>
+
+        <h2>Radno vrijeme i lokacija</h2>
+        <ul>
+            <li><strong>Lokacija</strong> — Maksimirska 115, Zagreb</li>
+            <li><strong>Radno vrijeme</strong> — Srijeda — Petak, 10:00 — 16:00</li>
+            <li><strong>Pregledi</strong> — isključivo po telefonskoj narudžbi</li>
+            <li><strong>Telefon</strong> — 01/230 20 60</li>
+        </ul>
+    </div>
+</div>
+
+<div class="blog-cta">
+    <div class="blog-cta-inner">
+        <h3>Nazovite nas za savjetovanje</h3>
+        <p>Naš tim stručnjaka pomoći će vam pronaći pravo rješenje.</p>
+        <a href="index.html#narucivanje" class="btn">Naruči konzultaciju</a>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="img/logo-white.png" alt="Monokl logo" width="150" height="50">
+            <p>Monokl je optički studio specijaliziran za zdravlje vida. Već više od 20 godina brinemo o vidu naših klijenata kroz 5 poslovnica u Hrvatskoj.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Usluge</h4>
+            <ul>
+                <li><a href="index.html#usluge">Pregled vida</a></li>
+                <li><a href="index.html#usluge">Dioptrijske naočale</a></li>
+                <li><a href="index.html#usluge">Sunčane naočale</a></li>
+                <li><a href="index.html#usluge">Kontaktne leće</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Poslovnice</h4>
+            <ul>
+                <li><a href="index.html#lokacije">Zagreb — Maksimirska</a></li>
+                <li><a href="index.html#lokacije">Zagreb — Ilica</a></li>
+                <li><a href="index.html#lokacije">Zagreb — Utrina</a></li>
+                <li><a href="index.html#lokacije">Dugo Selo</a></li>
+                <li><a href="index.html#lokacije">Sisak</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Informacije</h4>
+            <ul>
+                <li><a href="index.html#clanci">Blog i savjeti</a></li>
+                <li><a href="index.html#faq">Česta pitanja</a></li>
+                <li><a href="index.html#narucivanje">Naruči pregled</a></li>
+                <li><a href="poliklinika.html">Poliklinika</a></li>
+                <li><a href="centar-za-slabovidne.html">Centar za slabovidne</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Monokl optički studio. Sva prava pridržana.</span>
+    </div>
+</footer>
+
+</body>
+</html>

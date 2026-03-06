@@ -163,14 +163,6 @@
                     "@type": "Answer",
                     "text": "Da, Monokl ima specijaliziranu dječju očnu ordinaciju koja uključuje preglede za strabizam (škiljenje), kontrolu vida, vježbe vida na koordinatoru i prilagođavanje naočala za djecu. Preporučuje se prvi pregled vida napraviti prije polaska u školu."
                 }
-            },
-            {
-                "@type": "Question",
-                "name": "Prihvaća li Monokl HZZO?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne osobe. HZZO odobrava sredstva za teleskopske naočale i 4 modela elektronskih pomagala. Za detalje kontaktirajte Centar za slabovidne na Maksimirskoj 115."
-                }
             }
         ]
     }
@@ -402,35 +394,6 @@
             transition: opacity 0.3s;
         }
         .brand-logo:hover { opacity: 1; }
-
-        /* ===== ZAŠTO MONOKL ===== */
-        #zasto { background: var(--gray-light); }
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-        .why-card {
-            background: #fff;
-            padding: 2.5rem 1.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .why-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transform: translateY(-3px);
-        }
-        .why-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
-        .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .why-card p { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
 
         /* ===== AKCIJE BANNER ===== */
         .promo-banner {
@@ -774,13 +737,6 @@
             .service-card h3 { font-size: 0.88rem; }
             .service-card p { font-size: 0.78rem; }
 
-            /* Zašto Monokl */
-            .why-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-            .why-card { padding: 1.3rem 0.8rem; }
-            .why-number { font-size: 1.7rem; }
-            .why-card h3 { font-size: 0.88rem; }
-            .why-card p { font-size: 0.78rem; }
-
             /* Promo */
             .promo-banner { flex-direction: column; text-align: center; padding: 2rem 1.5rem; gap: 1.2rem; border-radius: 12px; }
             .promo-banner h2 { font-size: 1.3rem; }
@@ -833,123 +789,11 @@
             .service-icon { margin: 0; min-width: 40px; }
             .service-card h3 { margin-bottom: 0.2rem; }
             .locations-grid { grid-template-columns: 1fr; }
-            .why-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-brand { grid-column: span 1; }
             .brand-logo { height: 18px; }
             .brands-ticker .brands-track .brand-logo { margin: 0 1.2rem; }
         }
-        /* ===== TIM / DOKTORI ===== */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .team-card {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .team-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        .team-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
-        .team-role { color: var(--primary); font-size: 0.82rem; font-weight: 600; margin-bottom: 0.6rem; display: block; }
-        .team-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
-
-        /* ===== CIJENE ===== */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-        .price-card {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-        .price-card:hover {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        .price-card.featured {
-            border-color: var(--primary);
-            box-shadow: 0 4px 20px rgba(26,86,219,0.12);
-        }
-        .price-amount {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-            line-height: 1;
-        }
-        .price-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .price-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
-        .price-note {
-            display: inline-block;
-            background: #ecfdf5;
-            color: #059669;
-            font-size: 0.78rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            margin-top: 0.8rem;
-        }
-        .hzzo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: #eff6ff;
-            color: var(--primary);
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            margin-top: 1.5rem;
-        }
-
-        /* ===== CENTAR ZA SLABOVIDNE ===== */
-        .lowvision-banner {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-            border-radius: 16px;
-            padding: 3rem;
-            color: #fff;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        .lowvision-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-        .lowvision-banner h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; }
-        .lowvision-banner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
-        .lowvision-details {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .lowvision-details span {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.5);
-        }
-        .lowvision-details strong { color: #fff; }
-
         /* ===== SCROLL ANIMATIONS ===== */
         .animate-on-scroll {
             opacity: 0;
@@ -1185,15 +1029,11 @@
 
         /* ===== RESPONSIVE ADDITIONS ===== */
         @media (max-width: 768px) {
-            .team-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .team-card { padding: 1.5rem 1.2rem; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 1rem; }
-            .price-card { padding: 1.5rem 1.2rem; }
-            .lowvision-banner { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
-            .lowvision-details { justify-content: center; }
             .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
             .review-card { padding: 1.5rem 1.2rem; min-height: 160px; }
-            .reviews-grid[data-mobile="true"] .review-card.review-hidden { display: none; }
+            .review-card:nth-child(n+2) { display: none; }
+            .review-card.review-visible { display: flex; }
+            .review-card.review-hidden { display: none; }
             .cookie-banner { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1rem; }
             .hero-arrow svg { width: 26px; height: 26px; }
         }
@@ -1209,7 +1049,7 @@
     <button class="nav-toggle" aria-label="Otvori navigaciju" onclick="document.querySelector('header nav ul').classList.toggle('open')">&#9776;</button>
         <ul>
             <li><a href="#usluge">Usluge</a></li>
-            <li><a href="#cijene">Cijene</a></li>
+            <li><a href="poliklinika.html">Poliklinika</a></li>
             <li><a href="#clanci">Savjeti</a></li>
             <li><a href="#lokacije">Lokacije</a></li>
             <li><a href="#narucivanje" class="nav-cta">Naruči pregled</a></li>
@@ -1315,85 +1155,6 @@
     </div>
 </section>
 
-<!-- CENTAR ZA SLABOVIDNE -->
-<section style="padding: 3rem 2rem; background: #fff;">
-    <div class="container">
-        <div class="lowvision-banner animate-on-scroll">
-            <div class="lowvision-icon">&#128270;</div>
-            <div>
-                <h3>Centar za slabovidne</h3>
-                <p>Specijalizirani centar za osobe sa smanjenim vidom. Nudimo elektronska pomagala, povećala, teleskopske sustave i medicinske filtar naočale — uz stručnu subspecijalističku procjenu.</p>
-                <div class="lowvision-details">
-                    <span><strong>Lokacija:</strong> Maksimirska 115, Zagreb</span>
-                    <span><strong>Radno vrijeme:</strong> Sri — Pet, 10 — 16h</span>
-                    <span><strong>Narudžbe:</strong> 01/230 20 60</span>
-                </div>
-                <span class="hzzo-badge" style="background:rgba(255,255,255,0.1); color:#93c5fd; margin-top:1rem;">&#10003; Ugovorni dobavljač HZZO-a</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ZAŠTO MONOKL -->
-<section id="zasto">
-    <div class="container text-center">
-        <span class="section-label">Zašto Monokl</span>
-        <h2 class="section-title">Razlozi za povjerenje</h2>
-        <p class="section-subtitle">Više od dva desetljeća brinemo o vidu naših klijenata</p>
-        <div class="why-grid">
-            <div class="why-card animate-on-scroll">
-                <div class="why-number">20+</div>
-                <h3>Godina iskustva</h3>
-                <p>Više od dva desetljeća brige o zdravlju vida naših klijenata.</p>
-            </div>
-            <div class="why-card animate-on-scroll">
-                <div class="why-number">50+</div>
-                <h3>Premium brendova</h3>
-                <p>Gucci, Boss, Saint Laurent, Montblanc, Carolina Herrera i&nbsp;mnogi drugi.</p>
-            </div>
-            <div class="why-card animate-on-scroll">
-                <div class="why-number">5</div>
-                <h3>Poslovnica</h3>
-                <p>Zagreb, Dugo Selo i Sisak — uvijek smo vam blizu.</p>
-            </div>
-            <div class="why-card animate-on-scroll">
-                <div class="why-number">1</div>
-                <h3>Vlastita poliklinika</h3>
-                <p>Oftalmološki pregledi i dječja ordinacija s najmodernijom opremom.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NAŠ TIM -->
-<section id="tim">
-    <div class="container text-center">
-        <span class="section-label">Naš tim</span>
-        <h2 class="section-title">Stručnjaci za vaš vid</h2>
-        <p class="section-subtitle">Iskusni oftalmolozi i stručnjaci koji brinu o zdravlju vaših očiju</p>
-        <div class="team-grid">
-            <div class="team-card animate-on-scroll">
-
-                <h3>Mirjana Nasić, dr. med.</h3>
-                <span class="team-role">Specijalist oftalmologije</span>
-                <p>Stručnjakinja za preglede vida odraslih i djece s dugogodišnjim iskustvom u dijagnostici i liječenju očnih bolesti.</p>
-            </div>
-            <div class="team-card animate-on-scroll">
-
-                <h3>Zlatko Juratovac, dr. med.</h3>
-                <span class="team-role">Specijalist oftalmologije</span>
-                <p>Specijalist za oftalmološke preglede, kontrolu dioptrije i stručno savjetovanje pri odabiru leća i okvira.</p>
-            </div>
-            <div class="team-card animate-on-scroll">
-
-                <h3>Andrea Lebarić Ivić, mag.pharm.</h3>
-                <span class="team-role">Direktorica</span>
-                <p>Voditeljica Monokl tima koja osigurava vrhunsku kvalitetu usluge u svim poslovnicama od 1995. godine.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- GOOGLE RECENZIJE -->
 <section id="recenzije">
     <div class="container text-center">
@@ -1458,34 +1219,6 @@
                 <button id="reviews-next" aria-label="Sljedeće recenzije">&#10095;</button>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- CIJENE PREGLEDA -->
-<section id="cijene" style="background: var(--gray-light);">
-    <div class="container text-center">
-        <span class="section-label">Cijene</span>
-        <h2 class="section-title">Cijene oftalmoloških pregleda</h2>
-        <p class="section-subtitle">Transparentne cijene bez skrivenih troškova</p>
-        <div class="pricing-grid">
-            <div class="price-card animate-on-scroll featured">
-                <div class="price-amount">80 €</div>
-                <h3>Pregled vida — odrasli</h3>
-                <p>Kompletan oftalmološki pregled vida za odrasle osobe s najmodernijom dijagnostičkom opremom.</p>
-                <span class="price-note">&#10003; Refrakcija besplatna uz kupnju okvira</span>
-            </div>
-            <div class="price-card animate-on-scroll">
-                <div class="price-amount">100 €</div>
-                <h3>Pregled vida — djeca 10-15</h3>
-                <p>Detaljan pregled vida za djecu od 10 do 15 godina prilagođen mlađoj dobnoj skupini.</p>
-            </div>
-            <div class="price-card animate-on-scroll">
-                <div class="price-amount">120 €</div>
-                <h3>Pregled vida — djeca 4-9</h3>
-                <p>Specijalizirani pregled za najmlađe s posebnim pristupom i testovima za dječji vid.</p>
-            </div>
-        </div>
-        <span class="hzzo-badge animate-on-scroll">&#10003; Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne</span>
     </div>
 </section>
 
@@ -1602,15 +1335,6 @@
                 </button>
                 <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
                     <p itemprop="text">Monokl ima 5 poslovnica: tri u Zagrebu (Maksimirska 115, Ilica 248, Barčev trg 15 — Utrina), jednu u Dugom Selu (Hrvatskih branitelja 3) i jednu u Sisku (I. K. Sakcinskog 9A). Radno vrijeme je ponedjeljak-petak 8-20h, subota 9-13h.</p>
-                </div>
-            </div>
-            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span itemprop="name">Prihvaća li Monokl HZZO?</span>
-                    <span class="faq-arrow">&#9660;</span>
-                </button>
-                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne osobe. HZZO odobrava sredstva za teleskopske naočale i 4 modela elektronskih pomagala. Za detalje o pokriću kontaktirajte naš Centar za slabovidne na Maksimirskoj 115 (01/230 20 60).</p>
                 </div>
             </div>
         </div>
@@ -1781,8 +1505,8 @@
         <div class="footer-col">
             <h4>Informacije</h4>
             <ul>
-                <li><a href="#tim">Naš tim</a></li>
-                <li><a href="#cijene">Cijene pregleda</a></li>
+                <li><a href="poliklinika.html">Poliklinika</a></li>
+                <li><a href="centar-za-slabovidne.html">Centar za slabovidne</a></li>
                 <li><a href="#clanci">Blog i savjeti</a></li>
                 <li><a href="#faq">Česta pitanja</a></li>
                 <li><a href="#narucivanje">Naruči pregled</a></li>
@@ -1936,9 +1660,10 @@
             cards.forEach(function(card, i) {
                 if (i >= start && i < start + perPage) {
                     card.classList.remove('review-hidden');
-                    card.classList.add('visible');
+                    card.classList.add('review-visible', 'visible');
                 } else {
                     card.classList.add('review-hidden');
+                    card.classList.remove('review-visible');
                 }
             });
             var dots = dotsContainer.querySelectorAll('span');
@@ -1966,6 +1691,9 @@
                 else showPage((page - 1 + totalPages) % totalPages);
             }
         }, { passive: true });
+
+        // Init: show first page immediately
+        showPage(0);
     })();
 
     // Cookie consent
