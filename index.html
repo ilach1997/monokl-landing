@@ -84,8 +84,8 @@
             {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-                "opens": "09:00",
-                "closes": "17:00"
+                "opens": "08:00",
+                "closes": "20:00"
             },
             {
                 "@type": "OpeningHoursSpecification",
@@ -137,7 +137,7 @@
                 "name": "Gdje se nalaze poslovnice Monokl optike?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Monokl ima 5 poslovnica: tri u Zagrebu (Maksimirska 115, Ilica 248, Barčev trg 15 — Utrina), jednu u Dugom Selu (Hrvatskih branitelja 3) i jednu u Sisku (I. K. Sakcinskog 9A). Radno vrijeme je pon-pet 9-17h, sub 9-13h."
+                    "text": "Monokl ima 5 poslovnica: tri u Zagrebu (Maksimirska 115, Ilica 248, Barčev trg 15 — Utrina), jednu u Dugom Selu (Hrvatskih branitelja 3) i jednu u Sisku (I. K. Sakcinskog 9A). Radno vrijeme je pon-pet 8-20h, sub 9-13h."
                 }
             },
             {
@@ -162,6 +162,14 @@
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Da, Monokl ima specijaliziranu dječju očnu ordinaciju koja uključuje preglede za strabizam (škiljenje), kontrolu vida, vježbe vida na koordinatoru i prilagođavanje naočala za djecu. Preporučuje se prvi pregled vida napraviti prije polaska u školu."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Prihvaća li Monokl HZZO?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne osobe. HZZO odobrava sredstva za teleskopske naočale i 4 modela elektronskih pomagala. Za detalje kontaktirajte Centar za slabovidne na Maksimirskoj 115."
                 }
             }
         ]
@@ -831,6 +839,128 @@
             .brand-logo { height: 18px; }
             .brands-ticker .brands-track .brand-logo { margin: 0 1.2rem; }
         }
+        /* ===== TIM / DOKTORI ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .team-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .team-card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .team-avatar {
+            width: 72px;
+            height: 72px;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+        }
+        .team-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+        .team-role { color: var(--primary); font-size: 0.82rem; font-weight: 600; margin-bottom: 0.6rem; display: block; }
+        .team-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
+
+        /* ===== CIJENE ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .price-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .price-card:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(26,86,219,0.12);
+        }
+        .price-amount {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            line-height: 1;
+        }
+        .price-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .price-card p { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
+        .price-note {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #059669;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            margin-top: 0.8rem;
+        }
+        .hzzo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #eff6ff;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+        }
+
+        /* ===== CENTAR ZA SLABOVIDNE ===== */
+        .lowvision-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            border-radius: 16px;
+            padding: 3rem;
+            color: #fff;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .lowvision-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+        .lowvision-banner h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .lowvision-banner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.6; }
+        .lowvision-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .lowvision-details span {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+        }
+        .lowvision-details strong { color: #fff; }
+
         /* ===== SCROLL ANIMATIONS ===== */
         .animate-on-scroll {
             opacity: 0;
@@ -1066,6 +1196,12 @@
 
         /* ===== RESPONSIVE ADDITIONS ===== */
         @media (max-width: 768px) {
+            .team-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .team-card { padding: 1.5rem 1.2rem; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .price-card { padding: 1.5rem 1.2rem; }
+            .lowvision-banner { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+            .lowvision-details { justify-content: center; }
             .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
             .review-card { padding: 1.5rem 1.2rem; min-height: 160px; }
             .reviews-grid[data-mobile="true"] .review-card.review-hidden { display: none; }
@@ -1084,8 +1220,8 @@
     <button class="nav-toggle" aria-label="Otvori navigaciju" onclick="document.querySelector('header nav ul').classList.toggle('open')">&#9776;</button>
         <ul>
             <li><a href="#usluge">Usluge</a></li>
+            <li><a href="#cijene">Cijene</a></li>
             <li><a href="#clanci">Savjeti</a></li>
-            <li><a href="#faq">Pitanja</a></li>
             <li><a href="#lokacije">Lokacije</a></li>
             <li><a href="#narucivanje" class="nav-cta">Naruči pregled</a></li>
         </ul>
@@ -1190,6 +1326,25 @@
     </div>
 </section>
 
+<!-- CENTAR ZA SLABOVIDNE -->
+<section style="padding: 3rem 2rem; background: #fff;">
+    <div class="container">
+        <div class="lowvision-banner animate-on-scroll">
+            <div class="lowvision-icon">&#128270;</div>
+            <div>
+                <h3>Centar za slabovidne</h3>
+                <p>Specijalizirani centar za osobe sa smanjenim vidom. Nudimo elektronska pomagala, povećala, teleskopske sustave i medicinske filtar naočale — uz stručnu subspecijalističku procjenu.</p>
+                <div class="lowvision-details">
+                    <span><strong>Lokacija:</strong> Maksimirska 115, Zagreb</span>
+                    <span><strong>Radno vrijeme:</strong> Sri — Pet, 10 — 16h</span>
+                    <span><strong>Narudžbe:</strong> 01/230 20 60</span>
+                </div>
+                <span class="hzzo-badge" style="background:rgba(255,255,255,0.1); color:#93c5fd; margin-top:1rem;">&#10003; Ugovorni dobavljač HZZO-a</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ZAŠTO MONOKL -->
 <section id="zasto">
     <div class="container text-center">
@@ -1216,6 +1371,35 @@
                 <div class="why-number">1</div>
                 <h3>Vlastita poliklinika</h3>
                 <p>Oftalmološki pregledi i dječja ordinacija s najmodernijom opremom.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NAŠ TIM -->
+<section id="tim">
+    <div class="container text-center">
+        <span class="section-label">Naš tim</span>
+        <h2 class="section-title">Stručnjaci za vaš vid</h2>
+        <p class="section-subtitle">Iskusni oftalmolozi i stručnjaci koji brinu o zdravlju vaših očiju</p>
+        <div class="team-grid">
+            <div class="team-card animate-on-scroll">
+                <div class="team-avatar">&#129657;</div>
+                <h3>Mirjana Nasić, dr. med.</h3>
+                <span class="team-role">Specijalist oftalmologije</span>
+                <p>Stručnjakinja za preglede vida odraslih i djece s dugogodišnjim iskustvom u dijagnostici i liječenju očnih bolesti.</p>
+            </div>
+            <div class="team-card animate-on-scroll">
+                <div class="team-avatar">&#129657;</div>
+                <h3>Zlatko Juratovac, dr. med.</h3>
+                <span class="team-role">Specijalist oftalmologije</span>
+                <p>Specijalist za oftalmološke preglede, kontrolu dioptrije i stručno savjetovanje pri odabiru leća i okvira.</p>
+            </div>
+            <div class="team-card animate-on-scroll">
+                <div class="team-avatar">&#128188;</div>
+                <h3>Andrea Lebarić Ivić, mag.pharm.</h3>
+                <span class="team-role">Direktorica</span>
+                <p>Voditeljica Monokl tima koja osigurava vrhunsku kvalitetu usluge u svim poslovnicama od 1995. godine.</p>
             </div>
         </div>
     </div>
@@ -1285,6 +1469,34 @@
                 <button id="reviews-next" aria-label="Sljedeće recenzije">&#10095;</button>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- CIJENE PREGLEDA -->
+<section id="cijene" style="background: var(--gray-light);">
+    <div class="container text-center">
+        <span class="section-label">Cijene</span>
+        <h2 class="section-title">Cijene oftalmoloških pregleda</h2>
+        <p class="section-subtitle">Transparentne cijene bez skrivenih troškova</p>
+        <div class="pricing-grid">
+            <div class="price-card animate-on-scroll featured">
+                <div class="price-amount">80 €</div>
+                <h3>Pregled vida — odrasli</h3>
+                <p>Kompletan oftalmološki pregled vida za odrasle osobe s najmodernijom dijagnostičkom opremom.</p>
+                <span class="price-note">&#10003; Refrakcija besplatna uz kupnju okvira</span>
+            </div>
+            <div class="price-card animate-on-scroll">
+                <div class="price-amount">100 €</div>
+                <h3>Pregled vida — djeca 10-15</h3>
+                <p>Detaljan pregled vida za djecu od 10 do 15 godina prilagođen mlađoj dobnoj skupini.</p>
+            </div>
+            <div class="price-card animate-on-scroll">
+                <div class="price-amount">120 €</div>
+                <h3>Pregled vida — djeca 4-9</h3>
+                <p>Specijalizirani pregled za najmlađe s posebnim pristupom i testovima za dječji vid.</p>
+            </div>
+        </div>
+        <span class="hzzo-badge animate-on-scroll">&#10003; Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne</span>
     </div>
 </section>
 
@@ -1400,7 +1612,16 @@
                     <span class="faq-arrow">&#9660;</span>
                 </button>
                 <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <p itemprop="text">Monokl ima 5 poslovnica: tri u Zagrebu (Maksimirska 115, Ilica 248, Barčev trg 15 — Utrina), jednu u Dugom Selu (Hrvatskih branitelja 3) i jednu u Sisku (I. K. Sakcinskog 9A). Radno vrijeme je ponedjeljak-petak 9-17h, subota 9-13h.</p>
+                    <p itemprop="text">Monokl ima 5 poslovnica: tri u Zagrebu (Maksimirska 115, Ilica 248, Barčev trg 15 — Utrina), jednu u Dugom Selu (Hrvatskih branitelja 3) i jednu u Sisku (I. K. Sakcinskog 9A). Radno vrijeme je ponedjeljak-petak 8-20h, subota 9-13h.</p>
+                </div>
+            </div>
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+                    <span itemprop="name">Prihvaća li Monokl HZZO?</span>
+                    <span class="faq-arrow">&#9660;</span>
+                </button>
+                <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Monokl je ugovorni dobavljač HZZO-a za pomagala za slabovidne osobe. HZZO odobrava sredstva za teleskopske naočale i 4 modela elektronskih pomagala. Za detalje o pokriću kontaktirajte naš Centar za slabovidne na Maksimirskoj 115 (01/230 20 60).</p>
                 </div>
             </div>
         </div>
@@ -1447,7 +1668,7 @@
             </div>
             <div class="location-card animate-on-scroll" style="background: var(--dark); color: #fff; border-color: var(--dark); cursor: default;">
                 <h3 style="color:#fff;">Radno vrijeme</h3>
-                <p style="color:#94a3b8;">Pon — Pet: 9:00 — 17:00</p>
+                <p style="color:#94a3b8;">Pon — Pet: 8:00 — 20:00</p>
                 <p style="color:#94a3b8;">Sub: 9:00 — 13:00</p>
             </div>
         </div>
@@ -1543,7 +1764,7 @@
                 <a href="https://www.facebook.com/monokloptika" target="_blank" rel="noopener" aria-label="Facebook">
                     <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/monokl_optika" target="_blank" rel="noopener" aria-label="Instagram">
+                <a href="https://www.instagram.com/optika.monokl" target="_blank" rel="noopener" aria-label="Instagram">
                     <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
                 </a>
             </div>
@@ -1571,6 +1792,8 @@
         <div class="footer-col">
             <h4>Informacije</h4>
             <ul>
+                <li><a href="#tim">Naš tim</a></li>
+                <li><a href="#cijene">Cijene pregleda</a></li>
                 <li><a href="#clanci">Blog i savjeti</a></li>
                 <li><a href="#faq">Česta pitanja</a></li>
                 <li><a href="#narucivanje">Naruči pregled</a></li>
