@@ -9,182 +9,82 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary: #1a56db;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --gray-light: #f8f9fb;
-            --border: #e2e8f0;
-        }
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            color: #1a1a1a;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            background: var(--gray-light);
-        }
+        :root { --primary: #1a56db; --dark: #0f172a; --gray: #64748b; --border: #e2e8f0; }
+        body { font-family: 'Inter', -apple-system, sans-serif; color: #1a1a1a; line-height: 1.6; -webkit-font-smoothing: antialiased; background: #e9edf2; }
         img { max-width: 100%; height: auto; }
-
-        /* Nav */
-        header {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-            padding: 0.8rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        header { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 100; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; }
         header img { height: 38px; }
-        .back-link {
-            text-decoration: none; color: var(--gray);
-            font-weight: 500; font-size: 0.9rem;
-            transition: color 0.2s;
-        }
+        .back-link { text-decoration: none; color: var(--gray); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
         .back-link:hover { color: var(--primary); }
 
-        /* Hero */
         .blog-hero {
             margin-top: 62px;
-            padding: 5rem 2rem 3rem;
-            background: var(--dark);
+            padding: 6rem 2rem 5rem;
             text-align: center;
             color: #fff;
+            position: relative;
+            overflow: hidden;
         }
-        .blog-hero .tag {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.3px;
+        .blog-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
         }
-        .blog-hero h1 {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 2.6rem;
-            font-weight: 700;
-            max-width: 700px;
-            margin: 0 auto 0.8rem;
-            line-height: 1.25;
+        .blog-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.8));
         }
-        .blog-hero .subtitle {
-            color: #94a3b8;
-            font-size: 1.05rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
+        .blog-hero > *:not(.blog-hero-bg) { position: relative; z-index: 1; }
+        .blog-hero .tag { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.78rem; font-weight: 600; margin-bottom: 1.2rem; letter-spacing: 0.3px; }
+        .blog-hero h1 { font-family: 'Lora', Georgia, serif; font-size: 2.6rem; font-weight: 700; max-width: 700px; margin: 0 auto 0.8rem; line-height: 1.25; }
+        .blog-hero .subtitle { color: #cbd5e1; font-size: 1.05rem; max-width: 500px; margin: 0 auto; }
 
-        /* Featured image */
-        .blog-image {
-            max-width: 800px;
-            margin: -1.5rem auto 0;
+        .blog-card {
+            max-width: 720px;
+            margin: -2rem auto 0;
             padding: 0 1.5rem;
             position: relative;
             z-index: 1;
         }
-        .blog-image img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            border-radius: 12px;
-            display: block;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-
-        /* Content */
-        .blog-content {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem 4rem;
-        }
-        .blog-content h2 {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 2.5rem 0 0.8rem;
-            color: var(--dark);
-        }
-        .blog-content p {
-            color: #374151;
-            font-size: 1.02rem;
-            line-height: 1.85;
-            margin-bottom: 1.2rem;
-        }
-        .blog-content ul {
-            margin: 1rem 0 1.5rem 1.2rem;
-            color: #374151;
-        }
-        .blog-content ul li {
-            margin-bottom: 0.7rem;
-            font-size: 1rem;
-            line-height: 1.75;
-            padding-left: 0.3rem;
-        }
-        .blog-content ul li strong { color: var(--dark); }
-        .highlight-box {
-            background: #fff;
-            border-left: 4px solid var(--primary);
-            padding: 1.3rem 1.5rem;
-            border-radius: 0 10px 10px 0;
-            margin: 1.8rem 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        }
-        .highlight-box p { margin-bottom: 0; color: var(--dark); font-weight: 500; }
-
-        /* Divider */
-        .divider {
-            width: 40px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-            margin: 2.5rem 0;
-        }
-
-        /* CTA */
-        .blog-cta {
-            max-width: 680px;
-            margin: 0 auto 3rem;
-            padding: 0 1.5rem;
-        }
-        .blog-cta-inner {
-            background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%);
+        .blog-card-inner {
+            background: #f1f5f9;
             border-radius: 14px;
-            padding: 2.5rem;
-            text-align: center;
+            padding: 3rem 3rem 2rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
         }
+        .blog-card-inner h2 { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; font-weight: 700; margin: 2.5rem 0 0.8rem; color: var(--dark); }
+        .blog-card-inner h2:first-child { margin-top: 0; }
+        .blog-card-inner p { color: #374151; font-size: 1.02rem; line-height: 1.85; margin-bottom: 1.2rem; }
+        .blog-card-inner ul { margin: 1rem 0 1.5rem 1.2rem; color: #374151; }
+        .blog-card-inner ul li { margin-bottom: 0.7rem; font-size: 1rem; line-height: 1.75; padding-left: 0.3rem; }
+        .blog-card-inner ul li strong { color: var(--dark); }
+        .highlight-box { background: #fff; border-left: 4px solid var(--primary); padding: 1.3rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.8rem 0; }
+        .highlight-box p { margin-bottom: 0; color: var(--dark); font-weight: 500; }
+        .divider { width: 40px; height: 3px; background: var(--primary); border-radius: 2px; margin: 2.5rem 0; }
+
+        .blog-cta { max-width: 720px; margin: 1.5rem auto 3rem; padding: 0 1.5rem; }
+        .blog-cta-inner { background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%); border-radius: 14px; padding: 2.5rem; text-align: center; }
         .blog-cta-inner h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.5rem; }
         .blog-cta-inner p { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem; }
-        .btn {
-            display: inline-block; padding: 0.8rem 2rem;
-            background: var(--primary); color: #fff;
-            text-decoration: none; border-radius: 8px;
-            font-weight: 600; font-size: 0.95rem;
-            transition: all 0.2s;
-        }
+        .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
         .btn:hover { background: #1644b0; transform: translateY(-1px); }
-
-        /* Footer */
-        footer {
-            background: var(--dark); color: #64748b;
-            padding: 2rem; text-align: center; font-size: 0.85rem;
-        }
+        footer { background: var(--dark); color: #64748b; padding: 2rem; text-align: center; font-size: 0.85rem; }
         footer a { color: #60a5fa; text-decoration: none; }
 
         @media (max-width: 768px) {
-            header { padding: 0.6rem 1rem; }
-            header img { height: 30px; }
-            .blog-hero { padding: 3.5rem 1.2rem 2.5rem; }
+            header { padding: 0.6rem 1rem; } header img { height: 30px; }
+            .blog-hero { padding: 4rem 1.2rem 3.5rem; }
             .blog-hero h1 { font-size: 1.8rem; }
             .blog-hero .subtitle { font-size: 0.92rem; }
-            .blog-image img { height: 220px; }
-            .blog-content { padding: 2rem 1.2rem 3rem; }
-            .blog-content h2 { font-size: 1.25rem; }
-            .blog-content p { font-size: 0.95rem; }
-            .blog-cta { padding: 0 1.2rem; }
-            .blog-cta-inner { padding: 2rem 1.5rem; }
+            .blog-card { padding: 0 1rem; }
+            .blog-card-inner { padding: 2rem 1.5rem 1.5rem; border-radius: 12px; }
+            .blog-card-inner h2 { font-size: 1.25rem; }
+            .blog-card-inner p { font-size: 0.95rem; }
+            .blog-cta { padding: 0 1rem; } .blog-cta-inner { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -196,46 +96,45 @@
 </header>
 
 <div class="blog-hero">
+    <div class="blog-hero-bg" style="background-image: url('img/blog-1.jpg')"></div>
     <span class="tag">Zdravlje vida</span>
     <h1>Vrijeme je za kontrolu dioptrije</h1>
     <p class="subtitle">Briga o vidu počinje pažnjom prema sebi</p>
 </div>
 
-<div class="blog-image">
-    <img src="img/blog-1.jpg" alt="Pacijent na oftalmološkom pregledu vida">
+<div class="blog-card">
+    <div class="blog-card-inner">
+        <p>Vid je osjetilo na koje se oslanjamo u gotovo svakom trenutku dana, a njegove se promjene najčešće događaju postupno. Upravo zato lako ih je zanemariti, iako mogu utjecati na koncentraciju, razinu energije i opće svakodnevno funkcioniranje.</p>
+
+        <div class="divider"></div>
+
+        <h2>Zašto je redovita kontrola vida važna?</h2>
+        <p>Redovitim pregledom vida moguće je pravovremeno prepoznati promjene i prilagoditi korekciju stvarnim potrebama očiju. Time se smanjuje naprezanje, učestalost glavobolja i osjećaj umora, a poboljšava kvaliteta vida u svakodnevnim situacijama — pri radu, čitanju, vožnji i odmoru.</p>
+
+        <div class="highlight-box">
+            <p>Kontrola vida nije samo provjera dioptrije, već važan korak u očuvanju dugoročnog zdravlja očiju.</p>
+        </div>
+
+        <h2>Kada obaviti kontrolu?</h2>
+        <p>Kontrolu vida preporučuje se obaviti najmanje jednom godišnje, a kod osoba koje već nose naočale ili kontaktne leće i češće. Posebnu pažnju obratite ako primijetite:</p>
+        <ul>
+            <li><strong>Zamućen ili promjenjiv vid</strong> — znakovi promjene dioptrije</li>
+            <li><strong>Umor i nelagoda u očima</strong> — posebno nakon rada na ekranu</li>
+            <li><strong>Česte glavobolje</strong> — mogu biti posljedica loše korekcije</li>
+            <li><strong>Slabiji vid u večernjim satima</strong> — otežana vožnja i kretanje</li>
+        </ul>
+
+        <h2>Kako izgleda pregled u Monoklu?</h2>
+        <p>Kontrola dioptrije provodi se u privatnom i mirnom okruženju, uz stručno vodstvo iskusnih optometrista. Pregled je ugodan, a pristup u potpunosti prilagođen pojedincu.</p>
+        <p>Svakoj kontroli pristupamo s razumijevanjem i vremenom potrebnim za razgovor, savjetovanje i jasno objašnjenje nalaza.</p>
+
+        <div class="highlight-box">
+            <p>Određivanje dioptrije za naručitelje naočala je potpuno besplatno.</p>
+        </div>
+
+        <p>Redovita kontrola vida jednostavan je, ali vrijedan oblik brige o sebi. Cilj je pružiti sigurnost, stručnost i podršku u svakom koraku — kako biste znali da je vaš vid u dobrim rukama.</p>
+    </div>
 </div>
-
-<article class="blog-content">
-    <p>Vid je osjetilo na koje se oslanjamo u gotovo svakom trenutku dana, a njegove se promjene najčešće događaju postupno. Upravo zato lako ih je zanemariti, iako mogu utjecati na koncentraciju, razinu energije i opće svakodnevno funkcioniranje.</p>
-
-    <div class="divider"></div>
-
-    <h2>Zašto je redovita kontrola vida važna?</h2>
-    <p>Redovitim pregledom vida moguće je pravovremeno prepoznati promjene i prilagoditi korekciju stvarnim potrebama očiju. Time se smanjuje naprezanje, učestalost glavobolja i osjećaj umora, a poboljšava kvaliteta vida u svakodnevnim situacijama — pri radu, čitanju, vožnji i odmoru.</p>
-
-    <div class="highlight-box">
-        <p>Kontrola vida nije samo provjera dioptrije, već važan korak u očuvanju dugoročnog zdravlja očiju.</p>
-    </div>
-
-    <h2>Kada obaviti kontrolu?</h2>
-    <p>Kontrolu vida preporučuje se obaviti najmanje jednom godišnje, a kod osoba koje već nose naočale ili kontaktne leće i češće. Posebnu pažnju obratite ako primijetite:</p>
-    <ul>
-        <li><strong>Zamućen ili promjenjiv vid</strong> — znakovi promjene dioptrije</li>
-        <li><strong>Umor i nelagoda u očima</strong> — posebno nakon rada na ekranu</li>
-        <li><strong>Česte glavobolje</strong> — mogu biti posljedica loše korekcije</li>
-        <li><strong>Slabiji vid u večernjim satima</strong> — otežana vožnja i kretanje</li>
-    </ul>
-
-    <h2>Kako izgleda pregled u Monoklu?</h2>
-    <p>Kontrola dioptrije provodi se u privatnom i mirnom okruženju, uz stručno vodstvo iskusnih optometrista. Pregled je ugodan, a pristup u potpunosti prilagođen pojedincu.</p>
-    <p>Svakoj kontroli pristupamo s razumijevanjem i vremenom potrebnim za razgovor, savjetovanje i jasno objašnjenje nalaza.</p>
-
-    <div class="highlight-box">
-        <p>Određivanje dioptrije za naručitelje naočala je potpuno besplatno.</p>
-    </div>
-
-    <p>Redovita kontrola vida jednostavan je, ali vrijedan oblik brige o sebi. Cilj je pružiti sigurnost, stručnost i podršku u svakom koraku — kako biste znali da je vaš vid u dobrim rukama.</p>
-</article>
 
 <div class="blog-cta">
     <div class="blog-cta-inner">
