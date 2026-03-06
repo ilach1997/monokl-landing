@@ -385,23 +385,15 @@
         .service-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
 
         /* ===== BRENDOVI ===== */
-        #brendovi { background: var(--dark); color: #fff; padding: 3rem 2rem; }
-        .brands-track {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            align-items: center;
+        #brendovi { background: var(--dark); color: #fff; padding: 2.5rem 0; overflow: hidden; }
+        .brand-logo {
+            height: 26px;
+            width: auto;
+            flex-shrink: 0;
+            opacity: 0.45;
+            transition: opacity 0.3s;
         }
-        .brand-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #64748b;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-        .brand-name:hover { color: #fff; }
+        .brand-logo:hover { opacity: 1; }
 
         /* ===== ZAŠTO MONOKL ===== */
         #zasto { background: var(--gray-light); }
@@ -758,9 +750,9 @@
             .hero-stat p { font-size: 0.68rem; }
 
             /* Brendovi */
-            #brendovi { padding: 1.5rem 1rem; }
-            .brands-track { gap: 1rem; }
-            .brand-name { font-size: 0.7rem; letter-spacing: 0.5px; }
+            #brendovi { padding: 1.5rem 0; }
+            .brands-ticker .brands-track .brand-logo { margin: 0 1.5rem; }
+            .brand-logo { height: 20px; }
 
             /* Sekcije */
             .section-label { font-size: 0.7rem; }
@@ -836,8 +828,8 @@
             .why-grid { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-brand { grid-column: span 1; }
-            .brands-track { gap: 0.8rem; }
-            .brand-name { font-size: 0.65rem; }
+            .brand-logo { height: 18px; }
+            .brands-ticker .brands-track .brand-logo { margin: 0 1.2rem; }
         }
         /* ===== SCROLL ANIMATIONS ===== */
         .animate-on-scroll {
@@ -874,11 +866,14 @@
         }
         .brands-ticker .brands-track {
             display: flex;
-            gap: 3rem;
+            align-items: center;
             flex-wrap: nowrap;
-            justify-content: flex-start;
-            animation: marquee 30s linear infinite;
+            animation: marquee 45s linear infinite;
             width: max-content;
+            will-change: transform;
+        }
+        .brands-ticker .brands-track .brand-logo {
+            margin: 0 2.5rem;
         }
         .brands-ticker:hover .brands-track {
             animation-play-state: paused;
@@ -1090,24 +1085,25 @@
 <section id="brendovi" aria-label="Brendovi">
     <div class="brands-ticker">
         <div class="brands-track">
-            <span class="brand-name">Gucci</span>
-            <span class="brand-name">Boss</span>
-            <span class="brand-name">Saint Laurent</span>
-            <span class="brand-name">Tommy Hilfiger</span>
-            <span class="brand-name">Montblanc</span>
-            <span class="brand-name">Carolina Herrera</span>
-            <span class="brand-name">Moschino</span>
-            <span class="brand-name">Morel</span>
-            <span class="brand-name">Ana Hickmann</span>
-            <span class="brand-name" aria-hidden="true">Gucci</span>
-            <span class="brand-name" aria-hidden="true">Boss</span>
-            <span class="brand-name" aria-hidden="true">Saint Laurent</span>
-            <span class="brand-name" aria-hidden="true">Tommy Hilfiger</span>
-            <span class="brand-name" aria-hidden="true">Montblanc</span>
-            <span class="brand-name" aria-hidden="true">Carolina Herrera</span>
-            <span class="brand-name" aria-hidden="true">Moschino</span>
-            <span class="brand-name" aria-hidden="true">Morel</span>
-            <span class="brand-name" aria-hidden="true">Ana Hickmann</span>
+            <svg class="brand-logo" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gucci"><text x="65" y="23" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="24" font-weight="400" letter-spacing="6">GUCCI</text></svg>
+            <svg class="brand-logo" viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Boss"><text x="55" y="24" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" letter-spacing="5">BOSS</text></svg>
+            <svg class="brand-logo" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Saint Laurent"><text x="110" y="22" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="20" font-weight="400" letter-spacing="5">SAINT LAURENT</text></svg>
+            <svg class="brand-logo" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tommy Hilfiger"><text x="110" y="23" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" letter-spacing="2">TOMMY HILFIGER</text></svg>
+            <svg class="brand-logo" viewBox="0 0 180 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Montblanc"><text x="90" y="23" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="22" font-weight="400" letter-spacing="4">MONTBLANC</text></svg>
+            <svg class="brand-logo" viewBox="0 0 250 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Carolina Herrera"><text x="125" y="22" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="19" font-weight="400" letter-spacing="4">CAROLINA HERRERA</text></svg>
+            <svg class="brand-logo" viewBox="0 0 170 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Moschino"><text x="85" y="24" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="4">MOSCHINO</text></svg>
+            <svg class="brand-logo" viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Morel"><text x="55" y="23" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="300" letter-spacing="5">MOREL</text></svg>
+            <svg class="brand-logo" viewBox="0 0 210 30" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ana Hickmann"><text x="105" y="22" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="300" letter-spacing="4">ANA HICKMANN</text></svg>
+            <!--  duplicate for seamless loop -->
+            <svg class="brand-logo" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="65" y="23" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="24" font-weight="400" letter-spacing="6">GUCCI</text></svg>
+            <svg class="brand-logo" viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="55" y="24" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" letter-spacing="5">BOSS</text></svg>
+            <svg class="brand-logo" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="110" y="22" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="20" font-weight="400" letter-spacing="5">SAINT LAURENT</text></svg>
+            <svg class="brand-logo" viewBox="0 0 220 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="110" y="23" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" letter-spacing="2">TOMMY HILFIGER</text></svg>
+            <svg class="brand-logo" viewBox="0 0 180 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="90" y="23" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="22" font-weight="400" letter-spacing="4">MONTBLANC</text></svg>
+            <svg class="brand-logo" viewBox="0 0 250 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="125" y="22" text-anchor="middle" fill="#fff" font-family="'Times New Roman',Georgia,serif" font-size="19" font-weight="400" letter-spacing="4">CAROLINA HERRERA</text></svg>
+            <svg class="brand-logo" viewBox="0 0 170 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="85" y="24" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="700" letter-spacing="4">MOSCHINO</text></svg>
+            <svg class="brand-logo" viewBox="0 0 110 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="55" y="23" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="300" letter-spacing="5">MOREL</text></svg>
+            <svg class="brand-logo" viewBox="0 0 210 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="105" y="22" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="300" letter-spacing="4">ANA HICKMANN</text></svg>
         </div>
     </div>
 </section>
