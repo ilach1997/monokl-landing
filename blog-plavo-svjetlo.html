@@ -86,8 +86,16 @@
         .blog-cta-inner p { color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem; }
         .btn { display: inline-block; padding: 0.8rem 2rem; background: var(--primary); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; }
         .btn:hover { background: #1644b0; transform: translateY(-1px); }
-        footer { background: var(--dark); color: #64748b; padding: 2rem; text-align: center; font-size: 0.85rem; }
-        footer a { color: #60a5fa; text-decoration: none; }
+        footer { background: var(--dark); color: #94a3b8; padding: 4rem 2rem 2rem; }
+        .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid #1e293b; }
+        .footer-brand img { height: 40px; margin-bottom: 1rem; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.7; max-width: 280px; }
+        .footer-col h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.5rem; }
+        .footer-col ul a { color: #94a3b8; text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+        .footer-col ul a:hover { color: #fff; }
+        .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.5rem; display: flex; justify-content: center; font-size: 0.82rem; }
 
         @media (max-width: 768px) {
             header { padding: 0.6rem 1rem; } header img { height: 30px; }
@@ -100,6 +108,17 @@
             .blog-card-inner p { font-size: 0.95rem; }
             .rule-grid { gap: 0.5rem; } .rule-card { padding: 1rem 0.5rem; } .rule-card .number { font-size: 1.5rem; }
             .blog-cta { padding: 0 1rem; } .blog-cta-inner { padding: 2rem 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .footer-brand { grid-column: span 2; }
+            .footer-brand img { height: 32px; }
+            .footer-brand p { font-size: 0.82rem; }
+            .footer-col h4 { font-size: 0.82rem; }
+            .footer-col ul a { font-size: 0.82rem; }
+            .footer-bottom { font-size: 0.75rem; }
+        }
+        @media (max-width: 380px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-brand { grid-column: span 1; }
         }
     </style>
 </head>
@@ -189,7 +208,42 @@
 </div>
 
 <footer>
-    <p>&copy; 2026 Monokl optički studio &middot; <a href="index.html">Natrag na početnu</a></p>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="img/logo-white.png" alt="Monokl logo" width="150" height="50">
+            <p>Monokl je optički studio specijaliziran za zdravlje vida. Već više od 20 godina brinemo o vidu naših klijenata kroz 5 poslovnica u Hrvatskoj.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Usluge</h4>
+            <ul>
+                <li><a href="index.html#usluge">Pregled vida</a></li>
+                <li><a href="index.html#usluge">Dioptrijske naočale</a></li>
+                <li><a href="index.html#usluge">Sunčane naočale</a></li>
+                <li><a href="index.html#usluge">Kontaktne leće</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Poslovnice</h4>
+            <ul>
+                <li><a href="index.html#lokacije">Zagreb — Maksimirska</a></li>
+                <li><a href="index.html#lokacije">Zagreb — Ilica</a></li>
+                <li><a href="index.html#lokacije">Zagreb — Utrina</a></li>
+                <li><a href="index.html#lokacije">Dugo Selo</a></li>
+                <li><a href="index.html#lokacije">Sisak</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Informacije</h4>
+            <ul>
+                <li><a href="index.html#clanci">Blog i savjeti</a></li>
+                <li><a href="index.html#faq">Česta pitanja</a></li>
+                <li><a href="index.html#narucivanje">Naruči pregled</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Monokl optički studio. Sva prava pridržana.</span>
+    </div>
 </footer>
 
 </body>
