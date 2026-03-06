@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vrijeme je za kontrolu dioptrije — Monokl</title>
+    <meta name="description" content="Zašto je redovita kontrola vida važna? Saznajte kada obaviti pregled, koji su simptomi promjene dioptrije i kako Monokl pristupa svakom klijentu.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1a56db;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --gray-light: #f1f5f9;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; height: auto; }
+
+        /* Nav */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0.8rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header img { height: 38px; }
+        .back-link {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        /* Hero */
+        .blog-hero {
+            margin-top: 62px;
+            height: 340px;
+            background: url('img/blog-1.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        .blog-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 40%, rgba(15,23,42,0.7));
+        }
+
+        /* Content */
+        .blog-content {
+            max-width: 720px;
+            margin: -60px auto 0;
+            padding: 3rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            border-radius: 16px 16px 0 0;
+        }
+        .blog-tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .blog-content h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .blog-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .blog-content h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+        }
+        .blog-content p {
+            color: #374151;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+        .blog-content ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: #374151;
+        }
+        .blog-content ul li {
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .blog-content ul li strong { color: var(--dark); }
+        .highlight-box {
+            background: var(--gray-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        .highlight-box p { margin-bottom: 0; color: var(--dark); font-weight: 500; }
+
+        /* CTA */
+        .blog-cta {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e3a5f 100%);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .blog-cta h3 { color: #fff; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .blog-cta p { color: #94a3b8; margin-bottom: 1.5rem; }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #1644b0; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        footer a { color: #60a5fa; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            header { padding: 0.6rem 1rem; }
+            header img { height: 30px; }
+            .blog-hero { height: 220px; }
+            .blog-content { padding: 2rem 1.2rem 3rem; margin-top: -40px; }
+            .blog-content h1 { font-size: 1.6rem; }
+            .blog-subtitle { font-size: 0.95rem; }
+            .blog-content h2 { font-size: 1.2rem; }
+            .blog-cta { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img src="img/logo.png" alt="Monokl" height="38"></a>
+    <a href="index.html" class="back-link">&larr; Natrag</a>
+</header>
+
+<div class="blog-hero"></div>
+
+<article class="blog-content">
+    <span class="blog-tag">Zdravlje vida</span>
+    <h1>Vrijeme je za kontrolu dioptrije</h1>
+    <p class="blog-subtitle">Briga o vidu počinje pažnjom prema sebi</p>
+
+    <p>Vid je osjetilo na koje se oslanjamo u gotovo svakom trenutku dana, a njegove se promjene najčešće događaju postupno. Upravo zato lako ih je zanemariti, iako mogu utjecati na koncentraciju, razinu energije i opće svakodnevno funkcioniranje.</p>
+
+    <h2>Zašto je redovita kontrola vida važna?</h2>
+    <p>Redovitim pregledom vida moguće je pravovremeno prepoznati promjene i prilagoditi korekciju stvarnim potrebama očiju. Time se smanjuje naprezanje, učestalost glavobolja i osjećaj umora, a poboljšava kvaliteta vida u svakodnevnim situacijama — pri radu, čitanju, vožnji i odmoru.</p>
+
+    <div class="highlight-box">
+        <p>Kontrola vida nije samo provjera dioptrije, već važan korak u očuvanju dugoročnog zdravlja očiju.</p>
+    </div>
+
+    <h2>Kada obaviti kontrolu?</h2>
+    <p>Kontrolu vida preporučuje se obaviti najmanje jednom godišnje, a kod osoba koje već nose naočale ili kontaktne leće i češće. Posebnu pažnju obratite ako primijetite:</p>
+    <ul>
+        <li><strong>Zamućen ili promjenjiv vid</strong> — znakovi promjene dioptrije</li>
+        <li><strong>Umor i nelagoda u očima</strong> — posebno nakon rada na ekranu</li>
+        <li><strong>Česte glavobolje</strong> — mogu biti posljedica loše korekcije</li>
+        <li><strong>Slabiji vid u večernjim satima</strong> — otežana vožnja i kretanje</li>
+    </ul>
+
+    <h2>Kako izgleda pregled u Monoklu?</h2>
+    <p>Kontrola dioptrije provodi se u privatnom i mirnom okruženju, uz stručno vodstvo iskusnih optometrista. Pregled je ugodan, a pristup u potpunosti prilagođen pojedincu.</p>
+    <p>Svakoj kontroli pristupamo s razumijevanjem i vremenom potrebnim za razgovor, savjetovanje i jasno objašnjenje nalaza.</p>
+
+    <div class="highlight-box">
+        <p>Određivanje dioptrije za naručitelje naočala je potpuno besplatno.</p>
+    </div>
+
+    <p>Redovita kontrola vida jednostavan je, ali vrijedan oblik brige o sebi. Cilj je pružiti sigurnost, stručnost i podršku u svakom koraku — kako biste znali da je vaš vid u dobrim rukama.</p>
+
+    <div class="blog-cta">
+        <h3>Naručite se na kontrolu vida</h3>
+        <p>Besplatno određivanje dioptrije u svim poslovnicama.</p>
+        <a href="index.html#narucivanje" class="btn">Naruči pregled</a>
+    </div>
+</article>
+
+<footer>
+    <p>&copy; 2026 Monokl optički studio &middot; <a href="index.html">Natrag na početnu</a></p>
+</footer>
+
+</body>
+</html>
