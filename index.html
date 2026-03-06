@@ -9,6 +9,7 @@
     <meta name="author" content="Monokl optički studio">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.monokl.hr/">
+    <link rel="icon" type="image/png" href="img/logo.png">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -838,6 +839,198 @@
             .brands-track { gap: 0.8rem; }
             .brand-name { font-size: 0.65rem; }
         }
+        /* ===== SCROLL ANIMATIONS ===== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .services-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+        .services-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+        .services-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+        .services-grid .animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
+        .services-grid .animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
+        .why-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+        .why-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+        .why-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+        .articles-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.15s; }
+        .articles-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+        .reviews-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.15s; }
+        .reviews-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
+        .locations-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
+        .locations-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.16s; }
+        .locations-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.24s; }
+        .locations-grid .animate-on-scroll:nth-child(5) { transition-delay: 0.32s; }
+        .locations-grid .animate-on-scroll:nth-child(6) { transition-delay: 0.4s; }
+
+        /* ===== BRAND TICKER ===== */
+        .brands-ticker {
+            overflow: hidden;
+            width: 100%;
+        }
+        .brands-ticker .brands-track {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+        .brands-ticker:hover .brands-track {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== HERO SCROLL ARROW ===== */
+        .hero-arrow {
+            display: inline-block;
+            margin-top: 2rem;
+            animation: bounce 2s ease infinite;
+            text-decoration: none;
+        }
+        .hero-arrow svg {
+            width: 32px;
+            height: 32px;
+            stroke: rgba(255,255,255,0.6);
+            transition: stroke 0.2s;
+        }
+        .hero-arrow:hover svg { stroke: #fff; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* ===== GOOGLE REVIEWS ===== */
+        #recenzije { background: #fff; }
+        .reviews-aggregate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .reviews-aggregate svg { width: 24px; height: 24px; flex-shrink: 0; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .review-card {
+            background: var(--gray-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: left;
+        }
+        .review-stars {
+            color: #facc15;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+        .review-card p {
+            color: var(--gray);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .review-author {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        /* ===== COOKIE CONSENT ===== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: #cbd5e1;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            z-index: 200;
+            font-size: 0.88rem;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+        }
+        .cookie-banner.hidden { display: none; }
+        .cookie-banner p { max-width: 600px; }
+        .cookie-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+        .cookie-btn:hover { background: var(--primary-dark); }
+
+        /* ===== FOOTER SOCIAL ===== */
+        .footer-social {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #1e293b;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .footer-social a:hover { background: var(--primary); }
+        .footer-social svg { width: 18px; height: 18px; fill: #94a3b8; }
+        .footer-social a:hover svg { fill: #fff; }
+
+        /* ===== DIRECTIONS LINK ===== */
+        .directions-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.82rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .directions-link:hover { color: var(--primary); }
+
+        /* ===== ARTICLE DATE ===== */
+        .article-date {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        /* ===== RESPONSIVE ADDITIONS ===== */
+        @media (max-width: 768px) {
+            .reviews-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .review-card { padding: 1.5rem 1.2rem; }
+            .cookie-banner { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1rem; }
+            .hero-arrow svg { width: 26px; height: 26px; }
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
@@ -868,7 +1061,6 @@
     <p>Stručni oftalmološki pregledi, dioptrijske i sunčane naočale premium brendova te kontaktne leće — sve na jednom mjestu.</p>
     <div class="hero-buttons">
         <a href="#narucivanje" class="btn">Naruči se na pregled</a>
-        <a href="#usluge" class="btn btn-outline">Saznaj više</a>
     </div>
     <div class="hero-stats">
         <div class="hero-stat">
@@ -884,20 +1076,34 @@
             <p>Premium brendova</p>
         </div>
     </div>
+    <a href="#brendovi" class="hero-arrow" aria-label="Skrolaj dolje">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
 </section>
 
 <!-- BRENDOVI -->
 <section id="brendovi" aria-label="Brendovi">
-    <div class="brands-track">
-        <span class="brand-name">Gucci</span>
-        <span class="brand-name">Boss</span>
-        <span class="brand-name">Saint Laurent</span>
-        <span class="brand-name">Tommy Hilfiger</span>
-        <span class="brand-name">Montblanc</span>
-        <span class="brand-name">Carolina Herrera</span>
-        <span class="brand-name">Moschino</span>
-        <span class="brand-name">Morel</span>
-        <span class="brand-name">Ana Hickmann</span>
+    <div class="brands-ticker">
+        <div class="brands-track">
+            <span class="brand-name">Gucci</span>
+            <span class="brand-name">Boss</span>
+            <span class="brand-name">Saint Laurent</span>
+            <span class="brand-name">Tommy Hilfiger</span>
+            <span class="brand-name">Montblanc</span>
+            <span class="brand-name">Carolina Herrera</span>
+            <span class="brand-name">Moschino</span>
+            <span class="brand-name">Morel</span>
+            <span class="brand-name">Ana Hickmann</span>
+            <span class="brand-name" aria-hidden="true">Gucci</span>
+            <span class="brand-name" aria-hidden="true">Boss</span>
+            <span class="brand-name" aria-hidden="true">Saint Laurent</span>
+            <span class="brand-name" aria-hidden="true">Tommy Hilfiger</span>
+            <span class="brand-name" aria-hidden="true">Montblanc</span>
+            <span class="brand-name" aria-hidden="true">Carolina Herrera</span>
+            <span class="brand-name" aria-hidden="true">Moschino</span>
+            <span class="brand-name" aria-hidden="true">Morel</span>
+            <span class="brand-name" aria-hidden="true">Ana Hickmann</span>
+        </div>
     </div>
 </section>
 
@@ -908,32 +1114,32 @@
         <h2 class="section-title">Sve za zdravlje vašeg vida</h2>
         <p class="section-subtitle">Od pregleda vida do najmodernijih naočala i leća — kompletna usluga na jednom mjestu</p>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#128083;</div>
                 <h3>Dioptrijske naočale</h3>
                 <p>Širok izbor premium okvira za muškarce, žene i djecu uz stručno savjetovanje i prilagodbu.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#9728;</div>
                 <h3>Sunčane naočale</h3>
                 <p>Zaštitite oči s kvalitetnim sunčanim naočalama brendova poput Gucci, Boss, Saint Laurent i drugih.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#128065;</div>
                 <h3>Oftalmološki pregledi</h3>
                 <p>Kompletni pregledi vida u našoj poliklinici s najmodernijom dijagnostičkom opremom.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#128308;</div>
                 <h3>Kontaktne leće</h3>
                 <p>Dnevne, mjesečne i torične leće te sve potrebne otopine za njegu i održavanje.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#128200;</div>
                 <h3>Progresivne leće</h3>
                 <p>Najmodernije jednojakosne, progresivne i bifokalne leće prilagođene vašim potrebama.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#10084;</div>
                 <h3>Dječja ordinacija</h3>
                 <p>Specijalizirani pregledi za djecu — strabizam, kontrola vida i vježbe na koordinatoru.</p>
@@ -949,22 +1155,22 @@
         <h2 class="section-title">Razlozi za povjerenje</h2>
         <p class="section-subtitle">Više od dva desetljeća brinemo o vidu naših klijenata</p>
         <div class="why-grid">
-            <div class="why-card">
+            <div class="why-card animate-on-scroll">
                 <div class="why-number">20+</div>
                 <h3>Godina iskustva</h3>
                 <p>Više od dva desetljeća brige o zdravlju vida naših klijenata.</p>
             </div>
-            <div class="why-card">
+            <div class="why-card animate-on-scroll">
                 <div class="why-number">50+</div>
                 <h3>Premium brendova</h3>
                 <p>Gucci, Boss, Saint Laurent, Montblanc, Carolina Herrera i&nbsp;mnogi drugi.</p>
             </div>
-            <div class="why-card">
+            <div class="why-card animate-on-scroll">
                 <div class="why-number">5</div>
                 <h3>Poslovnica</h3>
                 <p>Zagreb, Dugo Selo i Sisak — uvijek smo vam blizu.</p>
             </div>
-            <div class="why-card">
+            <div class="why-card animate-on-scroll">
                 <div class="why-number">1</div>
                 <h3>Vlastita poliklinika</h3>
                 <p>Oftalmološki pregledi i dječja ordinacija s najmodernijom opremom.</p>
@@ -973,13 +1179,43 @@
     </div>
 </section>
 
+<!-- GOOGLE RECENZIJE -->
+<section id="recenzije">
+    <div class="container text-center">
+        <span class="section-label">Recenzije</span>
+        <h2 class="section-title">Što kažu naši klijenti</h2>
+        <p class="section-subtitle">Pogledajte iskustva zadovoljnih korisnika naših usluga</p>
+        <div class="reviews-aggregate">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            4.8 od 5 — 300+ recenzija
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Izuzetno profesionalna usluga. Osoblje je strpljivo i stručno, a izbor okvira je fantastičan. Naočale su savršeno prilagođene — konačno vidim jasno bez naprezanja."</p>
+                <span class="review-author">Marija K.</span>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Već godinama dolazim u Monokl i uvijek sam zadovoljan. Pregled je temeljit, a savjeti za odabir leća su bili od velike pomoći. Preporučujem svima!"</p>
+                <span class="review-author">Ivan P.</span>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Odvela sam dijete na prvi pregled vida i bila sam oduševljena pristupom. Doktorica je bila nježna i strpljiva, a cijeli tim vrlo susretljiv. Svaka čast!"</p>
+                <span class="review-author">Ana S.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- AKCIJA BANNER -->
 <section style="padding: 3rem 2rem; background: #fff;">
     <div class="container">
-        <div class="promo-banner" style="text-align:center; justify-content:center; flex-direction:column;">
+        <div class="promo-banner animate-on-scroll" style="text-align:center; justify-content:center; flex-direction:column;">
             <div>
                 <h2 style="white-space: nowrap;">Kompletne naočale od 99&nbsp;€</h2>
-                <p>Okvir + naočalne leće u paketu. Dostupno u svim poslovnicama.</p>
+                <p>Okvir + naočalne leće u paketu. Dostupno u svim poslovnicama.<br><strong style="color:#fff;">Akcija vrijedi do 30. travnja 2026.</strong></p>
             </div>
             <a href="#narucivanje" class="btn btn-white">Naruči se na pregled</a>
         </div>
@@ -993,30 +1229,33 @@
         <h2 class="section-title">Korisni savjeti za vid</h2>
         <p class="section-subtitle">Sve što trebate znati o zdravlju očiju i odabiru naočala</p>
         <div class="articles-grid">
-            <a href="blog-kontrola-vida.html" class="article-card">
+            <a href="blog-kontrola-vida.html" class="article-card animate-on-scroll">
                 <img src="img/blog-1.jpg" alt="Pacijent na oftalmološkom pregledu vida" class="article-img" loading="lazy">
                 <div class="article-body">
                     <span class="article-tag">Zdravlje vida</span>
                     <h3>Vrijeme je za kontrolu dioptrije</h3>
                     <p>Oftalmolozi preporučuju preglede vida svake 1-2 godine. Djeca i osobe s dijabetesom trebaju ići češće. Saznajte zašto je redovita kontrola ključna.</p>
+                    <span class="article-date">Ožujak 2026</span>
                     <span class="article-link">Pročitaj više &rarr;</span>
                 </div>
             </a>
-            <a href="blog-progresivne-lece.html" class="article-card">
+            <a href="blog-progresivne-lece.html" class="article-card animate-on-scroll">
                 <img src="img/blog-2.jpg" alt="Progresivne naočalne leće" class="article-img" loading="lazy">
                 <div class="article-body">
                     <span class="article-tag">Progresivne leće</span>
                     <h3>Progresivne leće — vodič za korištenje</h3>
                     <p>Nakon 40. godine mnogi primijete poteškoće s čitanjem. Progresivne leće omogućuju jasan vid na sve udaljenosti — bez vidljive linije.</p>
+                    <span class="article-date">Ožujak 2026</span>
                     <span class="article-link">Pročitaj više &rarr;</span>
                 </div>
             </a>
-            <a href="blog-plavo-svjetlo.html" class="article-card">
+            <a href="blog-plavo-svjetlo.html" class="article-card animate-on-scroll">
                 <img src="img/blog-3.jpg" alt="Zaštita očiju od plavog svjetla ekrana" class="article-img" loading="lazy">
                 <div class="article-body">
                     <span class="article-tag">Digitalno zdravlje</span>
                     <h3>Plavo svjetlo — zašto su zaštitne leće neophodne</h3>
                     <p>Provodite puno vremena za ekranom? Blue-light leće i fotoosjetljive naočalne leće mogu značajno smanjiti naprezanje očiju.</p>
+                    <span class="article-date">Ožujak 2026</span>
                     <span class="article-link">Pročitaj više &rarr;</span>
                 </div>
             </a>
@@ -1031,7 +1270,7 @@
         <h2 class="section-title">Često postavljana pitanja</h2>
         <p class="section-subtitle">Odgovori na najčešća pitanja o pregledu vida, naočalama i našim uslugama</p>
         <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Koliko često treba ići na pregled vida?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1040,7 +1279,7 @@
                     <p itemprop="text">Oftalmolozi preporučuju pregled vida svake 1-2 godine za odrasle osobe. Djeca, osobe starije od 60 godina i oni s dijabetesom trebali bi ići češće — jednom godišnje. Ako primijetite promjene u vidu (zamagljen vid, glavobolje, naprezanje očiju), javite se odmah.</p>
                 </div>
             </div>
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Koje brendove naočala nudi Monokl?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1049,7 +1288,7 @@
                     <p itemprop="text">Monokl nudi preko 50 premium brendova uključujući Gucci, Boss, Saint Laurent, Tommy Hilfiger, Montblanc, Carolina Herrera, Moschino, Morel i Ana Hickmann. Dostupne su dioptrijske i sunčane naočale za muškarce, žene i djecu u svim cjenovnim rangovima.</p>
                 </div>
             </div>
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Kako se naručiti na pregled vida?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1058,7 +1297,7 @@
                     <p itemprop="text">Na pregled vida možete se naručiti online putem forme na našoj stranici, telefonski na broj najbliže poslovnice, ili osobnim dolaskom. Nakon što ostavite podatke, naš tim će vas kontaktirati i dogovoriti termin koji vam odgovara.</p>
                 </div>
             </div>
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Što su progresivne leće i kome su namijenjene?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1067,7 +1306,7 @@
                     <p itemprop="text">Progresivne leće omogućuju jasno gledanje na sve udaljenosti — blizu, srednje i daleko — u jednoj leći, bez vidljive linije. Namijenjene su osobama s presbiopijom (staračka dalekovidnost), koja obično nastupa nakon 40. godine života. Monokl nudi najmodernije progresivne leće uz stručno prilagođavanje.</p>
                 </div>
             </div>
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Ima li Monokl dječju očnu ordinaciju?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1076,7 +1315,7 @@
                     <p itemprop="text">Da, Monokl ima specijaliziranu dječju očnu ordinaciju koja uključuje preglede za strabizam (škiljenje), kontrolu vida, vježbe vida na koordinatoru i prilagođavanje naočala za djecu. Preporučuje se prvi pregled vida napraviti prije polaska u školu.</p>
                 </div>
             </div>
-            <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <div class="faq-item animate-on-scroll" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                 <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
                     <span itemprop="name">Gdje se nalaze poslovnice Monokl optike?</span>
                     <span class="faq-arrow">&#9660;</span>
@@ -1097,32 +1336,37 @@
         <p class="section-subtitle">5 poslovnica u Zagrebu, Dugom Selu i Sisku — uvijek smo vam blizu</p>
         <div id="map"></div>
         <div class="locations-grid">
-            <div class="location-card" data-lat="45.8192" data-lng="16.0178" data-name="Zagreb — Maksimirska" data-addr="Maksimirska 115" data-tel="01/230 20 60">
+            <div class="location-card animate-on-scroll" data-lat="45.8192" data-lng="16.0178" data-name="Zagreb — Maksimirska" data-addr="Maksimirska 115" data-tel="01/230 20 60">
                 <h3>Zagreb — Maksimirska</h3>
                 <p class="address">Maksimirska 115</p>
                 <a href="tel:+38512302060" class="phone">01/230 20 60</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=45.8192,16.0178" target="_blank" rel="noopener" class="directions-link">Upute za dolazak &rarr;</a>
             </div>
-            <div class="location-card" data-lat="45.8076" data-lng="15.9190" data-name="Zagreb — Ilica" data-addr="Ilica 248" data-tel="01/377 24 86">
+            <div class="location-card animate-on-scroll" data-lat="45.8076" data-lng="15.9190" data-name="Zagreb — Ilica" data-addr="Ilica 248" data-tel="01/377 24 86">
                 <h3>Zagreb — Ilica</h3>
                 <p class="address">Ilica 248</p>
                 <a href="tel:+38513772486" class="phone">01/377 24 86</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=45.8076,15.9190" target="_blank" rel="noopener" class="directions-link">Upute za dolazak &rarr;</a>
             </div>
-            <div class="location-card" data-lat="45.7812" data-lng="15.9827" data-name="Zagreb — Utrina" data-addr="Barčev trg 15" data-tel="01/662 16 66">
+            <div class="location-card animate-on-scroll" data-lat="45.7812" data-lng="15.9827" data-name="Zagreb — Utrina" data-addr="Barčev trg 15" data-tel="01/662 16 66">
                 <h3>Zagreb — Utrina</h3>
                 <p class="address">Barčev trg 15</p>
                 <a href="tel:+38516621666" class="phone">01/662 16 66</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=45.7812,15.9827" target="_blank" rel="noopener" class="directions-link">Upute za dolazak &rarr;</a>
             </div>
-            <div class="location-card" data-lat="45.8054" data-lng="16.2373" data-name="Dugo Selo" data-addr="Hrvatskih branitelja 3" data-tel="01/778 89 05">
+            <div class="location-card animate-on-scroll" data-lat="45.8054" data-lng="16.2373" data-name="Dugo Selo" data-addr="Hrvatskih branitelja 3" data-tel="01/778 89 05">
                 <h3>Dugo Selo</h3>
                 <p class="address">Hrvatskih branitelja 3</p>
                 <a href="tel:+38517788905" class="phone">01/778 89 05</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=45.8054,16.2373" target="_blank" rel="noopener" class="directions-link">Upute za dolazak &rarr;</a>
             </div>
-            <div class="location-card" data-lat="45.4867" data-lng="16.3756" data-name="Sisak" data-addr="I. K. Sakcinskog 9A" data-tel="044/63 36 72">
+            <div class="location-card animate-on-scroll" data-lat="45.4867" data-lng="16.3756" data-name="Sisak" data-addr="I. K. Sakcinskog 9A" data-tel="044/63 36 72">
                 <h3>Sisak</h3>
                 <p class="address">I. K. Sakcinskog 9A</p>
                 <a href="tel:+38544633672" class="phone">044/63 36 72</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=45.4867,16.3756" target="_blank" rel="noopener" class="directions-link">Upute za dolazak &rarr;</a>
             </div>
-            <div class="location-card" style="background: var(--dark); color: #fff; border-color: var(--dark); cursor: default;">
+            <div class="location-card animate-on-scroll" style="background: var(--dark); color: #fff; border-color: var(--dark); cursor: default;">
                 <h3 style="color:#fff;">Radno vrijeme</h3>
                 <p style="color:#94a3b8;">Pon — Pet: 9:00 — 17:00</p>
                 <p style="color:#94a3b8;">Sub: 9:00 — 13:00</p>
@@ -1216,6 +1460,14 @@
         <div class="footer-brand">
             <img src="img/logo-white.png" alt="Monokl logo" width="150" height="50">
             <p>Monokl je optički studio specijaliziran za zdravlje vida. Već više od 20 godina brinemo o vidu naših klijenata kroz 5 poslovnica u Hrvatskoj.</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/monokloptika" target="_blank" rel="noopener" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/monokl_optika" target="_blank" rel="noopener" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+            </div>
         </div>
         <div class="footer-col">
             <h4>Usluge</h4>
@@ -1330,6 +1582,36 @@
             header.style.boxShadow = 'none';
         }
     });
+
+    // Scroll animations (IntersectionObserver)
+    (function() {
+        var els = document.querySelectorAll('.animate-on-scroll');
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            els.forEach(function(el) { observer.observe(el); });
+        } else {
+            els.forEach(function(el) { el.classList.add('visible'); });
+        }
+    })();
+
+    // Cookie consent
+    (function() {
+        if (localStorage.getItem('monokl_cookie_consent')) return;
+        var banner = document.getElementById('cookie-banner');
+        if (!banner) return;
+        banner.classList.remove('hidden');
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+            localStorage.setItem('monokl_cookie_consent', '1');
+            banner.classList.add('hidden');
+        });
+    })();
 </script>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1362,10 +1644,30 @@
                 card.classList.add('active');
                 map.flyTo([lat, lng], 16, { duration: 1 });
                 marker.openPopup();
+
+                // Auto-select poslovnica in form
+                setTimeout(function() {
+                    var select = document.getElementById('poslovnica');
+                    if (!select) return;
+                    var selectName = name.replace(' — ', ' - ');
+                    for (var i = 0; i < select.options.length; i++) {
+                        if (select.options[i].value === selectName) {
+                            select.value = select.options[i].value;
+                            break;
+                        }
+                    }
+                    document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 600);
             });
         });
     })();
 </script>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie-banner hidden" id="cookie-banner">
+    <p>Ova stranica koristi kolačiće za poboljšanje korisničkog iskustva.</p>
+    <button class="cookie-btn" id="cookie-accept">Prihvaćam</button>
+</div>
 
 </body>
 </html>
