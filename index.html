@@ -544,6 +544,14 @@
         }
 
         /* ===== LOKACIJE ===== */
+        #map {
+            width: 100%;
+            height: 380px;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+            z-index: 1;
+        }
         .locations-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -551,16 +559,18 @@
         }
         .location-card {
             padding: 1.8rem;
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: var(--radius);
             text-align: center;
             transition: all 0.3s;
             background: #fff;
+            cursor: pointer;
         }
-        .location-card:hover {
+        .location-card:hover, .location-card.active {
             box-shadow: 0 8px 30px rgba(0,0,0,0.06);
             border-color: var(--primary);
         }
+        .location-card.active { background: #eff6ff; }
         .location-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
         .location-card .address { color: var(--gray); font-size: 0.9rem; }
         .location-card .phone {
@@ -784,7 +794,8 @@
             .faq-question { font-size: 0.92rem; padding: 1rem 0; }
             .faq-answer p { font-size: 0.88rem; }
 
-            /* Lokacije 2x3 */
+            /* Lokacije */
+            #map { height: 280px; }
             .locations-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
             .location-card { padding: 1.2rem 0.8rem; }
             .location-card h3 { font-size: 0.92rem; }
@@ -828,6 +839,7 @@
             .brand-name { font-size: 0.65rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
@@ -1083,33 +1095,34 @@
         <span class="section-label">Poslovnice</span>
         <h2 class="section-title">Posjetite nas</h2>
         <p class="section-subtitle">5 poslovnica u Zagrebu, Dugom Selu i Sisku — uvijek smo vam blizu</p>
+        <div id="map"></div>
         <div class="locations-grid">
-            <div class="location-card">
+            <div class="location-card" data-lat="45.8192" data-lng="16.0178" data-name="Zagreb — Maksimirska" data-addr="Maksimirska 115" data-tel="01/230 20 60">
                 <h3>Zagreb — Maksimirska</h3>
                 <p class="address">Maksimirska 115</p>
                 <a href="tel:+38512302060" class="phone">01/230 20 60</a>
             </div>
-            <div class="location-card">
+            <div class="location-card" data-lat="45.8076" data-lng="15.9190" data-name="Zagreb — Ilica" data-addr="Ilica 248" data-tel="01/377 24 86">
                 <h3>Zagreb — Ilica</h3>
                 <p class="address">Ilica 248</p>
                 <a href="tel:+38513772486" class="phone">01/377 24 86</a>
             </div>
-            <div class="location-card">
+            <div class="location-card" data-lat="45.7812" data-lng="15.9827" data-name="Zagreb — Utrina" data-addr="Barčev trg 15" data-tel="01/662 16 66">
                 <h3>Zagreb — Utrina</h3>
                 <p class="address">Barčev trg 15</p>
                 <a href="tel:+38516621666" class="phone">01/662 16 66</a>
             </div>
-            <div class="location-card">
+            <div class="location-card" data-lat="45.8054" data-lng="16.2373" data-name="Dugo Selo" data-addr="Hrvatskih branitelja 3" data-tel="01/778 89 05">
                 <h3>Dugo Selo</h3>
                 <p class="address">Hrvatskih branitelja 3</p>
                 <a href="tel:+38517788905" class="phone">01/778 89 05</a>
             </div>
-            <div class="location-card">
+            <div class="location-card" data-lat="45.4867" data-lng="16.3756" data-name="Sisak" data-addr="I. K. Sakcinskog 9A" data-tel="044/63 36 72">
                 <h3>Sisak</h3>
                 <p class="address">I. K. Sakcinskog 9A</p>
                 <a href="tel:+38544633672" class="phone">044/63 36 72</a>
             </div>
-            <div class="location-card" style="background: var(--dark); color: #fff; border-color: var(--dark);">
+            <div class="location-card" style="background: var(--dark); color: #fff; border-color: var(--dark); cursor: default;">
                 <h3 style="color:#fff;">Radno vrijeme</h3>
                 <p style="color:#94a3b8;">Pon — Pet: 9:00 — 17:00</p>
                 <p style="color:#94a3b8;">Sub: 9:00 — 13:00</p>
@@ -1319,6 +1332,41 @@
             header.style.boxShadow = 'none';
         }
     });
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Leaflet map
+    (function() {
+        var map = L.map('map', { scrollWheelZoom: false }).setView([45.72, 16.08], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap'
+        }).addTo(map);
+
+        var cards = document.querySelectorAll('.location-card[data-lat]');
+        var markers = [];
+
+        cards.forEach(function(card) {
+            var lat = parseFloat(card.dataset.lat);
+            var lng = parseFloat(card.dataset.lng);
+            var name = card.dataset.name;
+            var addr = card.dataset.addr;
+            var tel = card.dataset.tel;
+
+            var marker = L.marker([lat, lng]).addTo(map)
+                .bindPopup('<strong>' + name + '</strong><br>' + addr + '<br><a href="tel:' + tel.replace(/[\s\/]/g, '') + '">' + tel + '</a>');
+
+            markers.push({ marker: marker, lat: lat, lng: lng });
+
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('a')) return;
+                cards.forEach(function(c) { c.classList.remove('active'); });
+                card.classList.add('active');
+                map.flyTo([lat, lng], 16, { duration: 1 });
+                marker.openPopup();
+            });
+        });
+    })();
 </script>
 
 </body>
