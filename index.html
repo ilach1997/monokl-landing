@@ -932,7 +932,10 @@
             border-radius: var(--radius);
             padding: 2rem 1.5rem;
             text-align: left;
+            display: flex;
+            flex-direction: column;
         }
+        .review-card.review-hidden { display: none; }
         .review-stars {
             color: #facc15;
             font-size: 1.1rem;
@@ -944,11 +947,13 @@
             font-size: 0.92rem;
             line-height: 1.7;
             margin-bottom: 1rem;
+            flex: 1;
         }
         .review-author {
             font-weight: 700;
             font-size: 0.9rem;
             color: var(--dark);
+            margin-top: auto;
         }
 
         /* ===== COOKIE CONSENT ===== */
@@ -1189,7 +1194,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
             4.8 od 5 — 300+ recenzija
         </div>
-        <div class="reviews-grid">
+        <div class="reviews-grid" id="reviews-grid">
             <div class="review-card animate-on-scroll">
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>„Izuzetno profesionalna usluga. Osoblje je strpljivo i stručno, a izbor okvira je fantastičan. Naočale su savršeno prilagođene — konačno vidim jasno bez naprezanja."</p>
@@ -1204,6 +1209,36 @@
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                 <p>„Odvela sam dijete na prvi pregled vida i bila sam oduševljena pristupom. Doktorica je bila nježna i strpljiva, a cijeli tim vrlo susretljiv. Svaka čast!"</p>
                 <span class="review-author">Ana S.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Brza i profesionalna usluga. Naočale su bile gotove u roku od dva dana. Kvaliteta leća je odlična, a okvir je točno ono što sam tražio."</p>
+                <span class="review-author">Tomislav R.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Prvi put sam probala progresivne leće i zahvaljujući stručnom savjetovanju u Monoklu, prilagodba je bila brza i bezbolna. Osjećam se kao da imam nove oči!"</p>
+                <span class="review-author">Jelena M.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Odličan izbor brendova i pristupačne cijene. Osoblje je ljubazno i uvijek spremno pomoći. Već sam preporučila Monokl svim prijateljima i obitelji."</p>
+                <span class="review-author">Petra D.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Oftalmološki pregled je bio vrlo detaljan i temeljit. Liječnik mi je sve objasnio na razumljiv način. Cijela obitelj dolazi u Monokl već više od 10 godina."</p>
+                <span class="review-author">Davor B.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Kontaktne leće koje su mi preporučili su fantastične — udobne cijeli dan. Savjetovanje je bilo besplatno i bez ikakve žurbe. Hvala timu u Monoklu!"</p>
+                <span class="review-author">Luka H.</span>
+            </div>
+            <div class="review-card animate-on-scroll review-hidden">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p>„Poslovnica na Maksimirskoj je moderna i čista. Osoblje je profesionalno, a sunčane naočale koje sam kupio su vrhunske kvalitete. Definitivno se vraćam."</p>
+                <span class="review-author">Mario Š.</span>
             </div>
         </div>
     </div>
@@ -1599,6 +1634,34 @@
         } else {
             els.forEach(function(el) { el.classList.add('visible'); });
         }
+    })();
+
+    // Review rotation (show 3 at a time, cycle every 5s)
+    (function() {
+        var grid = document.getElementById('reviews-grid');
+        if (!grid) return;
+        var cards = Array.from(grid.querySelectorAll('.review-card'));
+        if (cards.length <= 3) return;
+        var page = 0;
+        var perPage = 3;
+        var totalPages = Math.ceil(cards.length / perPage);
+
+        function showPage(p) {
+            var start = p * perPage;
+            cards.forEach(function(card, i) {
+                if (i >= start && i < start + perPage) {
+                    card.classList.remove('review-hidden');
+                    card.classList.add('visible');
+                } else {
+                    card.classList.add('review-hidden');
+                }
+            });
+        }
+
+        setInterval(function() {
+            page = (page + 1) % totalPages;
+            showPage(page);
+        }, 5000);
     })();
 
     // Cookie consent
