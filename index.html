@@ -303,12 +303,6 @@
             cursor: pointer;
         }
         .btn:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.5);
-            color: #fff;
-        }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -385,6 +379,8 @@
             margin-bottom: 0.5rem;
         }
         .service-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+        a.service-card { text-decoration: none; color: inherit; display: block; }
+        a.service-card:hover h3 { color: var(--primary); }
 
         /* ===== BRENDOVI ===== */
         #brendovi { background: var(--dark); color: #fff; padding: 2.5rem 0; overflow: hidden; }
@@ -811,9 +807,6 @@
         .services-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
         .services-grid .animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
         .services-grid .animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
-        .why-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
-        .why-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
-        .why-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
         .articles-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.15s; }
         .articles-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.3s; }
         .reviews-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.15s; }
@@ -869,7 +862,7 @@
         }
 
         /* ===== GOOGLE REVIEWS ===== */
-        #recenzije { background: #fff; }
+        #recenzije { background: var(--gray-light); }
         .reviews-aggregate {
             display: flex;
             align-items: center;
@@ -1040,7 +1033,6 @@
             .hero-arrow svg { width: 26px; height: 26px; }
         }
     </style>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
@@ -1133,11 +1125,11 @@
                 <h3>Sunčane naočale</h3>
                 <p>Zaštitite oči s kvalitetnim sunčanim naočalama brendova poput Gucci, Boss, Saint Laurent i drugih.</p>
             </div>
-            <div class="service-card animate-on-scroll">
+            <a href="poliklinika.html" class="service-card animate-on-scroll">
                 <div class="service-icon">&#128065;</div>
                 <h3>Oftalmološki pregledi</h3>
                 <p>Kompletni pregledi vida u našoj poliklinici s najmodernijom dijagnostičkom opremom.</p>
-            </div>
+            </a>
             <div class="service-card animate-on-scroll">
                 <div class="service-icon">&#128308;</div>
                 <h3>Kontaktne leće</h3>
@@ -1148,11 +1140,11 @@
                 <h3>Progresivne leće</h3>
                 <p>Najmodernije jednojakosne, progresivne i bifokalne leće prilagođene vašim potrebama.</p>
             </div>
-            <div class="service-card animate-on-scroll">
+            <a href="poliklinika.html" class="service-card animate-on-scroll">
                 <div class="service-icon">&#10084;</div>
                 <h3>Dječja ordinacija</h3>
                 <p>Specijalizirani pregledi za djecu — strabizam, kontrola vida i vježbe na koordinatoru.</p>
-            </div>
+            </a>
         </div>
     </div>
 </section>
@@ -1475,6 +1467,7 @@
         <div class="footer-brand">
             <img src="img/logo-white.png" alt="Monokl logo" width="150" height="50">
             <p>Monokl je optički studio specijaliziran za zdravlje vida. Već više od 20 godina brinemo o vidu naših klijenata kroz 5 poslovnica u Hrvatskoj.</p>
+            <p style="margin-top:0.8rem;"><a href="tel:+38512302060" style="color:#60a5fa;text-decoration:none;font-weight:600;font-size:0.95rem;">01/230 20 60</a></p>
             <div class="footer-social">
                 <a href="https://www.facebook.com/monokloptika" target="_blank" rel="noopener" aria-label="Facebook">
                     <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1725,71 +1718,104 @@
     })();
 </script>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    // Leaflet map
+    // Lazy-load Leaflet when approaching #lokacije
     (function() {
-        var map = L.map('map', { scrollWheelZoom: false }).setView([45.72, 16.08], 10);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
+        var mapEl = document.getElementById('map');
+        if (!mapEl) return;
+        var loaded = false;
 
-        var cards = document.querySelectorAll('.location-card[data-lat]');
-        var markers = [];
+        function initMap() {
+            if (loaded) return;
+            loaded = true;
 
-        cards.forEach(function(card) {
-            var lat = parseFloat(card.dataset.lat);
-            var lng = parseFloat(card.dataset.lng);
-            var name = card.dataset.name;
-            var addr = card.dataset.addr;
-            var tel = card.dataset.tel;
+            // Load CSS
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+            document.head.appendChild(link);
 
-            var selectName = name.replace(' — ', ' - ');
-            var popupHtml = '<strong>' + name + '</strong><br>' + addr + '<br><a href="tel:' + tel.replace(/[\s\/]/g, '') + '">' + tel + '</a>'
-                + '<br><a href="#narucivanje" class="popup-book" data-poslovnica="' + selectName + '" style="display:inline-block;margin-top:6px;background:#1a56db;color:#fff;padding:4px 12px;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:600;">Naruči pregled</a>';
+            // Load JS
+            var script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.onload = function() {
+                var map = L.map('map', { scrollWheelZoom: false }).setView([45.72, 16.08], 10);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap'
+                }).addTo(map);
 
-            var marker = L.marker([lat, lng]).addTo(map)
-                .bindPopup(popupHtml);
+                var cards = document.querySelectorAll('.location-card[data-lat]');
 
-            markers.push({ marker: marker, lat: lat, lng: lng });
+                cards.forEach(function(card) {
+                    var lat = parseFloat(card.dataset.lat);
+                    var lng = parseFloat(card.dataset.lng);
+                    var name = card.dataset.name;
+                    var addr = card.dataset.addr;
+                    var tel = card.dataset.tel;
 
-            card.addEventListener('click', function(e) {
-                if (e.target.closest('a')) return;
-                cards.forEach(function(c) { c.classList.remove('active'); });
-                card.classList.add('active');
-                map.flyTo([lat, lng], 16, { duration: 1 });
-                marker.openPopup();
-            });
-        });
-        // Handle popup "Naruči pregled" click
-        document.getElementById('map').addEventListener('click', function(e) {
-            var link = e.target.closest('.popup-book');
-            if (!link) return;
-            e.preventDefault();
-            var poslovnica = link.dataset.poslovnica;
-            var select = document.getElementById('poslovnica');
-            if (select && poslovnica) {
-                for (var i = 0; i < select.options.length; i++) {
-                    if (select.options[i].value === poslovnica) {
-                        select.value = select.options[i].value;
-                        break;
+                    var selectName = name.replace(' — ', ' - ');
+                    var popupHtml = '<strong>' + name + '</strong><br>' + addr + '<br><a href="tel:' + tel.replace(/[\s\/]/g, '') + '">' + tel + '</a>'
+                        + '<br><a href="#narucivanje" class="popup-book" data-poslovnica="' + selectName + '" style="display:inline-block;margin-top:6px;background:#1a56db;color:#fff;padding:4px 12px;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:600;">Naruči pregled</a>';
+
+                    var marker = L.marker([lat, lng]).addTo(map)
+                        .bindPopup(popupHtml);
+
+                    card.addEventListener('click', function(e) {
+                        if (e.target.closest('a')) return;
+                        cards.forEach(function(c) { c.classList.remove('active'); });
+                        card.classList.add('active');
+                        map.flyTo([lat, lng], 16, { duration: 1 });
+                        marker.openPopup();
+                    });
+                });
+
+                // Handle popup "Naruči pregled" click
+                document.getElementById('map').addEventListener('click', function(e) {
+                    var popupLink = e.target.closest('.popup-book');
+                    if (!popupLink) return;
+                    e.preventDefault();
+                    var poslovnica = popupLink.dataset.poslovnica;
+                    var select = document.getElementById('poslovnica');
+                    if (select && poslovnica) {
+                        for (var i = 0; i < select.options.length; i++) {
+                            if (select.options[i].value === poslovnica) {
+                                select.value = select.options[i].value;
+                                break;
+                            }
+                        }
                     }
-                }
-            }
-            document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
+                    document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            };
+            document.body.appendChild(script);
+        }
+
         // Footer location links → trigger matching location card
         document.querySelectorAll('a[data-location]').forEach(function(link) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 var locationName = this.dataset.location;
-                var matchingCard = document.querySelector('.location-card[data-name="' + locationName + '"]');
-                if (matchingCard) {
-                    document.getElementById('lokacije').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(function() { matchingCard.click(); }, 800);
-                }
+                document.getElementById('lokacije').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                initMap();
+                setTimeout(function() {
+                    var matchingCard = document.querySelector('.location-card[data-name="' + locationName + '"]');
+                    if (matchingCard) matchingCard.click();
+                }, 1200);
             });
         });
+
+        // Lazy-load on scroll
+        if ('IntersectionObserver' in window) {
+            var obs = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    initMap();
+                    obs.disconnect();
+                }
+            }, { rootMargin: '200px' });
+            obs.observe(mapEl);
+        } else {
+            initMap();
+        }
     })();
 </script>
 
