@@ -208,7 +208,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: transform 0.3s ease;
         }
+        header.nav-hidden { transform: translateY(-100%); }
         header img { height: 38px; }
         header nav ul {
             list-style: none;
@@ -1588,15 +1590,29 @@
         }, 4000);
     })();
 
-    // Nav background on scroll
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-        } else {
-            header.style.boxShadow = 'none';
-        }
-    });
+    // Smart navbar: hide on scroll down, show on scroll up
+    (function() {
+        var header = document.querySelector('header');
+        var lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            var current = window.scrollY;
+            if (current > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+            if (current > 300) {
+                if (current > lastScroll + 5) {
+                    header.classList.add('nav-hidden');
+                } else if (current < lastScroll - 5) {
+                    header.classList.remove('nav-hidden');
+                }
+            } else {
+                header.classList.remove('nav-hidden');
+            }
+            lastScroll = current;
+        });
+    })();
 
     // Scroll animations (IntersectionObserver)
     (function() {
@@ -1728,8 +1744,12 @@
             var addr = card.dataset.addr;
             var tel = card.dataset.tel;
 
+            var selectName = name.replace(' — ', ' - ');
+            var popupHtml = '<strong>' + name + '</strong><br>' + addr + '<br><a href="tel:' + tel.replace(/[\s\/]/g, '') + '">' + tel + '</a>'
+                + '<br><a href="#narucivanje" class="popup-book" data-poslovnica="' + selectName + '" style="display:inline-block;margin-top:6px;background:#1a56db;color:#fff;padding:4px 12px;border-radius:6px;text-decoration:none;font-size:0.8rem;font-weight:600;">Naruči pregled</a>';
+
             var marker = L.marker([lat, lng]).addTo(map)
-                .bindPopup('<strong>' + name + '</strong><br>' + addr + '<br><a href="tel:' + tel.replace(/[\s\/]/g, '') + '">' + tel + '</a>');
+                .bindPopup(popupHtml);
 
             markers.push({ marker: marker, lat: lat, lng: lng });
 
@@ -1739,21 +1759,24 @@
                 card.classList.add('active');
                 map.flyTo([lat, lng], 16, { duration: 1 });
                 marker.openPopup();
-
-                // Auto-select poslovnica in form
-                setTimeout(function() {
-                    var select = document.getElementById('poslovnica');
-                    if (!select) return;
-                    var selectName = name.replace(' — ', ' - ');
-                    for (var i = 0; i < select.options.length; i++) {
-                        if (select.options[i].value === selectName) {
-                            select.value = select.options[i].value;
-                            break;
-                        }
-                    }
-                    document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 600);
             });
+        });
+        // Handle popup "Naruči pregled" click
+        document.getElementById('map').addEventListener('click', function(e) {
+            var link = e.target.closest('.popup-book');
+            if (!link) return;
+            e.preventDefault();
+            var poslovnica = link.dataset.poslovnica;
+            var select = document.getElementById('poslovnica');
+            if (select && poslovnica) {
+                for (var i = 0; i < select.options.length; i++) {
+                    if (select.options[i].value === poslovnica) {
+                        select.value = select.options[i].value;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     })();
 </script>
