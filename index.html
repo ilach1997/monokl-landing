@@ -1497,11 +1497,11 @@
         <div class="footer-col">
             <h4>Poslovnice</h4>
             <ul>
-                <li><a href="#lokacije">Zagreb — Maksimirska</a></li>
-                <li><a href="#lokacije">Zagreb — Ilica</a></li>
-                <li><a href="#lokacije">Zagreb — Utrina</a></li>
-                <li><a href="#lokacije">Dugo Selo</a></li>
-                <li><a href="#lokacije">Sisak</a></li>
+                <li><a href="#lokacije" data-location="Zagreb — Maksimirska">Zagreb — Maksimirska</a></li>
+                <li><a href="#lokacije" data-location="Zagreb — Ilica">Zagreb — Ilica</a></li>
+                <li><a href="#lokacije" data-location="Zagreb — Utrina">Zagreb — Utrina</a></li>
+                <li><a href="#lokacije" data-location="Dugo Selo">Dugo Selo</a></li>
+                <li><a href="#lokacije" data-location="Sisak">Sisak</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -1777,6 +1777,18 @@
                 }
             }
             document.getElementById('narucivanje').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        // Footer location links → trigger matching location card
+        document.querySelectorAll('a[data-location]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var locationName = this.dataset.location;
+                var matchingCard = document.querySelector('.location-card[data-name="' + locationName + '"]');
+                if (matchingCard) {
+                    document.getElementById('lokacije').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(function() { matchingCard.click(); }, 800);
+                }
+            });
         });
     })();
 </script>
